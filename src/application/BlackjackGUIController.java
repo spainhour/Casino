@@ -27,12 +27,26 @@ public class BlackjackGUIController {
 	@FXML
 	ImageView secondCard;
 	
+	@FXML
+	ImageView thirdCard;
+	
+	@FXML
+	Label myScore;
+	
+	@FXML
+	Label dealerScore;
+	
 	
 	void initialize() {
 			Image card = new Image("PNG-cards-1.3/10_of_clubs.png");
 			firstCard.setImage(card);
 			Image card1 = new Image("PNG-cards-1.3/4_of_diamonds.png");
 			secondCard.setImage(card1);
+			Image card2 = new Image("PNG-cards-1.3/ace_of_spades.png");
+			thirdCard.setImage(card2);
+			myScore.setText("21");
+			dealerScore.setText("");
+			
 	}
 	
 	public void setUsername(String username) {
