@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -17,28 +18,37 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class BlackjackGUIController {
-	
+
 	@FXML
 	Label usernameLabel;
-	
+
 	@FXML
 	ImageView firstCard;
-	
+
 	@FXML
 	ImageView secondCard;
-	
-	
+
+
 	void initialize() {
 			Image card = new Image("PNG-cards-1.3/10_of_clubs.png");
 			firstCard.setImage(card);
 			Image card1 = new Image("PNG-cards-1.3/4_of_diamonds.png");
 			secondCard.setImage(card1);
 	}
-	
+
 	public void setUsername(String username) {
 		usernameLabel.setText(username);
 	}
-	
+
+	@FXML
+	void hit(){
+	}
+
+	@FXML
+	void stand(){
+
+	}
+
 	@FXML
 	void leaveGame() {
 		try {
@@ -56,9 +66,9 @@ public class BlackjackGUIController {
 			outputMessage(AlertType.ERROR, "Could not load Main Menu");
 		}
 	}
-	
+
 	private void outputMessage(AlertType error, String string) {
 		Alert alert = new Alert(error, string);
-		alert.showAndWait();	
+		alert.showAndWait();
 	}
 }
