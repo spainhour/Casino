@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.shape.*?>
@@ -11,7 +12,7 @@
    <top>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="leaveGame" mnemonicParsing="false" onAction="#leaveGame" text="Leave Game" />
+            <Button fx:id="leaveGame" mnemonicParsing="false" onAction="#leaveGame" prefHeight="27.0" prefWidth="116.0" text="Leave Game" />
             <HBox prefHeight="100.0" prefWidth="111.0" />
             <VBox prefHeight="100.0" prefWidth="222.0">
                <children>
@@ -93,66 +94,8 @@
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-padding: 10;">
                <children>
-                  <StackPane>
-                     <children>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e7e7e7" height="143.0" stroke="BLACK" strokeType="INSIDE" width="94.0" />
-                        <VBox prefHeight="200.0" prefWidth="100.0">
-                           <children>
-                              <HBox prefHeight="100.0" prefWidth="200.0">
-                                 <children>
-                                    <Label style="-fx-label-padding: 7;" text="4">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </HBox>
-                              <HBox prefHeight="100.0" prefWidth="200.0" />
-                              <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" rotate="180.0">
-                                 <children>
-                                    <Label style="-fx-label-padding: 7;" text="4">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </HBox>
-                           </children>
-                        </VBox>
-                     </children>
-                  </StackPane>
-               </children>
-            </HBox>
-            <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" style="-fx-padding: 10;">
-               <children>
-                  <StackPane>
-                     <children>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e7e7e7" height="143.0" stroke="BLACK" strokeType="INSIDE" width="94.0" />
-                        <VBox prefHeight="200.0" prefWidth="100.0">
-                           <children>
-                              <HBox prefHeight="100.0" prefWidth="200.0">
-                                 <children>
-                                    <Label style="-fx-label-padding: 7;" text="8">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </HBox>
-                              <HBox prefHeight="100.0" prefWidth="200.0" />
-                              <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" rotate="180.0">
-                                 <children>
-                                    <Label style="-fx-label-padding: 7;" text="8">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </HBox>
-                           </children>
-                        </VBox>
-                     </children>
-                  </StackPane>
+                  <ImageView fx:id="cardLeft" fitHeight="150.0" fitWidth="97.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="cardRight" fitHeight="150.0" fitWidth="97.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </HBox>
          </children>

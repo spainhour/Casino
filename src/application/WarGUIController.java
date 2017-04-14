@@ -6,6 +6,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -16,15 +18,22 @@ public class WarGUIController {
 	Label opponentCardsLabel;
 	@FXML
 	Label myCardsLabel;
-	@FXML 
+	@FXML
 	Button leaveGame;
 	@FXML
 	Button playCard;
 	@FXML
 	Label usernameLabel;
+	@FXML
+	ImageView cardLeft;
+	@FXML
+	ImageView cardRight;
 	
 	void initialize() {
-		
+		Image card1 = new Image("PNG-cards-1.3/3_of_clubs.png");
+		cardLeft.setImage(card1);
+		Image card2 = new Image("PNG-cards-1.3/6_of_spades.png");
+		cardRight.setImage(card2);
 	}
 	
 	public void setUsername(String username) {
