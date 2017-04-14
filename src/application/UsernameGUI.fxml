@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane style="-fx-padding: 15;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.UsernameGUIController">
+   <center>
+      <VBox>
+         <children>
+            <HBox BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="enterUsername" text="Enter a username">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <HBox prefHeight="60.0" prefWidth="22.0" />
+                  <TextField fx:id="usernameTextField" />
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <HBox prefHeight="27.0" prefWidth="114.0" />
+                  <Button mnemonicParsing="false" onAction="#getUsername" text="Continue" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+   <top>
+      <HBox BorderPane.alignment="CENTER" />
+   </top>
+   <left>
+      <HBox BorderPane.alignment="CENTER" />
+   </left>
+   <bottom>
+      <HBox BorderPane.alignment="CENTER" />
+   </bottom>
+</BorderPane>

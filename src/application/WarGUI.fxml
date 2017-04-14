@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane style="-fx-padding: 15;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.WarGUIController">
+   <top>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="leaveGame" mnemonicParsing="false" onAction="#leaveGame" text="Leave Game" />
+            <HBox prefHeight="100.0" prefWidth="111.0" />
+            <VBox prefHeight="100.0" prefWidth="222.0">
+               <children>
+                  <Label fx:id="usernameLabel" text="Casino">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label text="War">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </top>
+   <bottom>
+      <HBox prefHeight="100.0" prefWidth="381.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0" />
+            <StackPane prefHeight="100.0" prefWidth="188.0">
+               <children>
+                  <Button fx:id="playCard" mnemonicParsing="false" text="Play Card" />
+               </children>
+            </StackPane>
+         </children>
+      </HBox>
+   </bottom>
+   <left>
+      <StackPane>
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="143.0" stroke="BLACK" strokeType="INSIDE" width="94.0" />
+            <VBox prefHeight="53.0" prefWidth="100.0" style="-fx-padding: 10;">
+               <children>
+                  <HBox prefHeight="40.0" prefWidth="100.0" />
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="98.0" text="Cards" textAlignment="CENTER">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="20.0" layoutY="60.0" prefHeight="17.0" prefWidth="98.0" text="Remaining" textAlignment="CENTER">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="opponentCardsLabel" alignment="CENTER" prefHeight="17.0" prefWidth="94.0" text="#" />
+               </children>
+            </VBox>
+         </children>
+      </StackPane>
+   </left>
+   <right>
+      <StackPane>
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="143.0" stroke="BLACK" strokeType="INSIDE" width="94.0" />
+            <VBox prefHeight="53.0" prefWidth="100.0" style="-fx-padding: 10;">
+               <children>
+                  <HBox prefHeight="40.0" prefWidth="100.0" />
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="98.0" text="Cards">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="98.0" text="Remaining" textAlignment="CENTER">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="myCardsLabel" alignment="CENTER" prefHeight="17.0" prefWidth="94.0" text="#" />
+               </children>
+            </VBox>
+         </children>
+      </StackPane>
+   </right>
+   <center>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-padding: 10;">
+               <children>
+                  <StackPane>
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e7e7e7" height="143.0" stroke="BLACK" strokeType="INSIDE" width="94.0" />
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label style="-fx-label-padding: 7;" text="4">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="100.0" prefWidth="200.0" />
+                              <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" rotate="180.0">
+                                 <children>
+                                    <Label style="-fx-label-padding: 7;" text="4">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </StackPane>
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" style="-fx-padding: 10;">
+               <children>
+                  <StackPane>
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e7e7e7" height="143.0" stroke="BLACK" strokeType="INSIDE" width="94.0" />
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label style="-fx-label-padding: 7;" text="8">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="100.0" prefWidth="200.0" />
+                              <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" rotate="180.0">
+                                 <children>
+                                    <Label style="-fx-label-padding: 7;" text="8">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </StackPane>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+   </center>
+</BorderPane>
