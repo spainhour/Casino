@@ -5,14 +5,14 @@ import java.util.Random;
 
 public class Card {
 	private card card;
-
+	private cardImage cardImageArray;
 	
-	public static void main(String Args[])
+	public Card(cardImage cI)
 	{
-		
+		Random rn = new Random();
+		this.card = card.values()[rn.nextInt(52) + 1];
+		this.cardImageArray = cI;
 	}
-	
-
 	
 	private enum card
 	{
@@ -84,6 +84,7 @@ public class Card {
 	public int getCardVal(){ return this.card.val;}
 	public int getCardSuit(){ return this.card.suit;}
 	public int getCardNumber(){ return this.card.ordinal();}
+	public javafx.scene.image.Image getCardImage(){ return this.cardImageArray.get(this.card.ordinal()); }
 	
 }
 

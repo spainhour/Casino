@@ -65,4 +65,6 @@ public class cardImage
 		cardImages[53] = new Image("PNG-cards-1.3/red_joker.png");
 	}
 	
+	public javafx.scene.image.Image get(int index){ return this.cardImages[index]; } 
+	
 }
