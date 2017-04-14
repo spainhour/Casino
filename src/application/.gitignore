@@ -4,3 +4,10 @@
 /MainMenuGUIController.class
 /UsernameGUIController.class
 /WarGUIController.class
+<<<<<<< HEAD
+=======
+/Card.class
+/Card$cardNumber.class
+/Card$cardSuit.class
+/Card$cardSuit$cardNumber.class
+>>>>>>> origin/master
