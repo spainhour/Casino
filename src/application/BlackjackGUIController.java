@@ -46,7 +46,6 @@ public class BlackjackGUIController {
 			thirdCard.setImage(card2);
 			myScore.setText("21");
 			dealerScore.setText("");
-			
 	}
 	
 	public void setUsername(String username) {
