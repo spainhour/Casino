@@ -35,12 +35,19 @@ public class CheatGUIController {
 	ImageView sixthCard;
 
 
-
 	void initialize() {
 		Image card = new Image("PNG-cards-1.3/10_of_clubs.png");
 		firstCard.setImage(card);
 		Image card1 = new Image("PNG-cards-1.3/4_of_diamonds.png");
 		secondCard.setImage(card1);
+		Image card2 = new Image("PNG-cards-1.3/5_of_hearts.png");
+		thirdCard.setImage(card2);
+		Image card3 = new Image("PNG-cards-1.3/jack_of_spades.png");
+		fourthCard.setImage(card3);
+		Image card4 = new Image("PNG-cards-1.3/queen_of_diamonds.png");
+		fifthCard.setImage(card4);
+		Image card5 = new Image("PNG-cards-1.3/4_of_clubs.png");
+		sixthCard.setImage(card5);
 
 	}
 
