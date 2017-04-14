@@ -29,9 +29,10 @@ public class WarGUIController {
 	@FXML
 	ImageView cardRight;
 	
+	
 	void initialize() {
-		Image card1 = new Image("PNG-cards-1.3/3_of_clubs.png");
-		cardLeft.setImage(card1);
+		Image card = new Image("PNG-cards-1.3/3_of_clubs.png");
+		cardLeft.setImage(card);
 		Image card2 = new Image("PNG-cards-1.3/6_of_spades.png");
 		cardRight.setImage(card2);
 	}

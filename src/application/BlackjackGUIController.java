@@ -58,7 +58,6 @@ public class BlackjackGUIController {
 
 	@FXML
 	void stand(){
-
 	}
 
 	@FXML
