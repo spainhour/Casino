@@ -1,85 +1,89 @@
 package application;
 
+import java.awt.Image;
 import java.util.Random;
 
 public class Card {
-	private cardSuit cardSuit;
-	private cardNumber cardNumber;
+	private card card;
+
 	
 	public static void main(String Args[])
 	{
 		
 	}
 	
-	public Card()
-	{
-		Random rn = new Random();
-		this.cardSuit = cardSuit.values()[rn.nextInt(3) + 1];
-		this.cardNumber = cardNumber.values()[rn.nextInt(13) + 1];
-	}
-	
-	private enum cardSuit 
-	{
-		SPADES ("spades"),
-		CLUBS ("clubs"),
-		DIAMONDS ("diamonds"),
-		HEARTS ("hearts");
-		
-		private final String name;       
 
-	    private cardSuit(String s) {
-	        name = s;
-	    }
-	    
-	    public String get(){ return this.name(); }
-		
-	};
 	
-	private enum cardNumber 
+	private enum card
 	{
-		ONE ("1"),
-		TWO ("2"),
-		THREE ("3"),
-		FOUR ("4"),
-		FIVE ("5"),
-		SIX ("6"),
-		SEVEN ("7"),
-		EIGHT ("8"),
-		NINE ("9"),
-		TEN ("10"),
-		JACK ("jack"),
-		KING ("king"),
-		QUEEN ("queen"),
-		ACE ("ace");
+		ten_of_clubs ( 10, 1),
+		ten_of_diamonds ( 10, 2),
+		ten_of_hearts ( 10, 3),
+		ten_of_spades ( 10, 1),
+		two_of_clubs ( 2, 2),
+		two_of_diamonds ( 2, 3),
+		two_of_hearts ( 2, 1),
+		two_of_spades ( 2, 2),
+		three_of_clubs ( 3, 3),
+		three_of_diamonds ( 3, 1),
+		three_of_hearts ( 3, 2),
+		three_of_spades ( 3, 3),
+		four_of_clubs ( 4, 1),
+		four_of_diamonds ( 4, 2),
+		four_of_hearts ( 4, 3),
+		four_of_spades ( 4, 1),
+		five_of_clubs ( 5, 2),
+		five_of_diamonds ( 5, 3),
+		five_of_hearts ( 5, 1),
+		five_of_spades ( 5, 2),
+		six_of_clubs ( 6, 3),
+		six_of_diamonds ( 6, 1),
+		six_of_hearts ( 6, 2),
+		six_of_spades ( 6, 3),
+		seven_of_clubs ( 7, 1),
+		seven_of_diamonds ( 7, 2),
+		seven_of_hearts ( 7, 3),
+		seven_of_spades ( 7, 1),
+		eight_of_clubs ( 8, 2),
+		eight_of_diamonds ( 8, 3),
+		eight_of_hearts ( 8, 1),
+		eight_of_spades ( 8, 2),
+		nine_of_clubs ( 9, 3),
+		nine_of_diamonds ( 9, 1),
+		nine_of_hearts ( 9, 2),
+		nine_of_spades ( 9, 3),
+		ace_of_clubs ( 1, 1),
+		ace_of_diamonds ( 1, 2),
+		ace_of_hearts ( 1, 3),
+		ace_of_spades ( 1, 1),
+		black_joker ( 0, 2),
+		jack_of_clubs ( 12, 3),
+		jack_of_diamonds ( 12, 1),
+		jack_of_hearts ( 12, 2),
+		jack_of_spades ( 12, 3),
+		king_of_clubs ( 13, 1),
+		king_of_diamonds ( 13, 2),
+		king_of_hearts ( 13, 3),
+		king_of_spades ( 13, 1),
+		queen_of_clubs ( 14, 2),
+		queen_of_diamonds ( 14, 3),
+		queen_of_hearts ( 14, 1),
+		queen_of_spades ( 14, 2),
+		red_joker ( 0, 3);
 		
-		private final String val;       
+		private final int val; 
+		private final int suit; 
 
-	    private cardNumber(String val) 
+	    private card(int  val, int suit) 
 	    {
 	        this.val = val;
+	        this.suit = suit;
 	    }
-	    
-	    public String get(){ return this.val; }
-		
 	};
 	
-	public String getCardPNG()
-	{
-		return this.cardNumber.get() + "_of_" + this.cardSuit.get();
-	}
-	
-	public int getCardValue()
-	{
-		if(this.cardNumber.get() == "jack"){ return 11; }
-		else if (this.cardNumber.get() == "king"){ return 12; }
-		else if (this.cardNumber.get() == "queen"){ return 13; }
-		else if (this.cardNumber.get() == "ace"){ return 14; }
-		else
-		{
-			return Integer.parseInt(this.cardNumber.get());
-		}
-		
-	}
+	public int getCardVal(){ return this.card.val;}
+	public int getCardSuit(){ return this.card.suit;}
+	public int getCardNumber(){ return this.card.ordinal();}
 	
 }
 
