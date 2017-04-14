@@ -6,13 +6,13 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane style="-fx-padding: 15;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.UsernameGUIController">
+<BorderPane style="-fx-padding: 15; -fx-background-image: url('feltGreen.jpg');" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.UsernameGUIController">
    <center>
       <VBox>
          <children>
             <HBox BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="enterUsername" text="Enter a username">
+                  <Label fx:id="enterUsername" text="Enter a username" textFill="WHITE">
                      <font>
                         <Font size="16.0" />
                      </font>

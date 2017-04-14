@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane style="-fx-padding: 15;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.WarGUIController">
+<BorderPane style="-fx-padding: 15; -fx-background-image: url('feltGreen.jpg');" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.WarGUIController">
    <top>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -16,12 +16,12 @@
             <HBox prefHeight="100.0" prefWidth="111.0" />
             <VBox prefHeight="100.0" prefWidth="222.0">
                <children>
-                  <Label fx:id="usernameLabel" text="Casino">
+                  <Label fx:id="usernameLabel" text="Casino" textFill="WHITE">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label text="War">
+                  <Label text="War" textFill="WHITE">
                      <font>
                         <Font size="18.0" />
                      </font>
