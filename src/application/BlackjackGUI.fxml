@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="440.0" prefWidth="444.0" style="-fx-padding: 15;-fx-background-image: url('feltGreen.jpg');" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.BlackjackGUIController">
+<BorderPane prefHeight="440.0" prefWidth="444.0" style="-fx-padding: 15;-fx-background-image: url('feltGreen.jpg');" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.BlackjackGUIController">
    <top>
       <VBox>
          <children>
@@ -79,9 +74,9 @@
             <HBox prefHeight="43.0" prefWidth="414.0" BorderPane.alignment="CENTER">
                <children>
                   <HBox prefHeight="100.0" prefWidth="103.0" />
-                  <Button mnemonicParsing="false" prefWidth="70.0" text="Hit" />
+                  <Button mnemonicParsing="false" onAction="#hit" prefWidth="70.0" text="Hit" />
                   <HBox prefHeight="100.0" prefWidth="63.0" />
-                  <Button mnemonicParsing="false" prefWidth="70.0" text="Stand" />
+                  <Button mnemonicParsing="false" onMouseClicked="#stand" prefWidth="70.0" text="Stand" />
                </children>
             </HBox>
          </children>
@@ -92,16 +87,32 @@
          <children>
             <HBox style="-fx-padding: 10;">
                <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="112.0" stroke="BLACK" strokeType="INSIDE" width="78.0" />
-                  <ImageView fx:id="secondCard" fitHeight="123.0" fitWidth="78.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="dFirstCard" fitHeight="123.0" fitWidth="78.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../blackCard.jpg" />
+                     </image></ImageView>
+                  <ImageView fx:id="dSecondCard" fitHeight="123.0" fitWidth="78.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../blackCard.jpg" />
+                     </image>
+                  </ImageView>
                </children>
             </HBox>
             <HBox prefHeight="145.0" prefWidth="414.0" style="-fx-padding: 10;">
                <children>
                   <HBox prefHeight="125.0" prefWidth="395.0">
                      <children>
-                        <ImageView fx:id="firstCard" fitHeight="123.0" fitWidth="78.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="thirdCard" fitHeight="123.0" fitWidth="78.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="pFirstCard" fitHeight="123.0" fitWidth="78.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../blackCard.jpg" />
+                           </image></ImageView>
+                        <ImageView fx:id="pSecondCard" fitHeight="123.0" fitWidth="78.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../blackCard.jpg" />
+                           </image></ImageView>
+                        <ImageView fx:id="pThirdCard" fitHeight="123.0" fitWidth="78.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="pFourthCard" fitHeight="123.0" fitWidth="78.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="pFifthCard" fitHeight="123.0" fitWidth="78.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </HBox>
                </children>
