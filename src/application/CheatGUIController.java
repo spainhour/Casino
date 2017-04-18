@@ -64,6 +64,7 @@ public class CheatGUIController {
 			Stage mainMenuStage = new Stage();
 			Scene scene = new Scene(root);
 			mainMenuStage.setScene(scene);
+			mainMenu.initialize();
 			mainMenu.setUsername(usernameLabel.getText());
 			mainMenuStage.show();
 			usernameLabel.getScene().getWindow().hide();

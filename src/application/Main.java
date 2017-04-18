@@ -13,7 +13,7 @@ public class Main extends Application {
 		try {
 			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("UsernameGUI.fxml"));
 			Scene scene = new Scene(root);
-			primaryStage.setTitle("The Casino");
+			primaryStage.setTitle("Casino");
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {

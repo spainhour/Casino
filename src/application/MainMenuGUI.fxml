@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
@@ -7,11 +8,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="186.0" prefWidth="316.0" style="-fx-padding: 15;-fx-background-image: url('feltGreen.jpg');" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainMenuGUIController">
+<BorderPane prefHeight="317.0" prefWidth="324.0" style="-fx-padding: 15;-fx-background-image: url('feltGreen.jpg');" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainMenuGUIController">
    <left>
-      <StackPane style="-fx-padding: 10;">
+      <StackPane prefHeight="206.0" prefWidth="98.0" style="-fx-padding: 10;">
          <children>
-            <VBox>
+            <VBox prefHeight="186.0" prefWidth="78.0">
                <children>
                   <Label alignment="CENTER" prefHeight="19.0" prefWidth="75.0" text="War" textAlignment="CENTER" textFill="WHITE">
                      <font>
@@ -19,6 +20,13 @@
                      </font>
                   </Label>
                   <HBox prefHeight="13.0" prefWidth="75.0" />
+                  <ImageView fx:id="king" fitHeight="123.0" fitWidth="78.0" pickOnBounds="true" preserveRatio="true" />
+                  <HBox prefHeight="13.0" prefWidth="75.0" />
+                  <Button fx:id="aboutWar" mnemonicParsing="false" onAction="#aboutWar" prefHeight="22.0" prefWidth="74.0" text="About">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Button>
                   <Button fx:id="playWar" mnemonicParsing="false" onAction="#playWar" prefWidth="75.0" text="Play" />
                </children>
             </VBox>
@@ -26,9 +34,9 @@
       </StackPane>
    </left>
    <right>
-      <StackPane style="-fx-padding: 10;">
+      <StackPane prefHeight="195.0" prefWidth="98.0" style="-fx-padding: 10;">
          <children>
-            <VBox>
+            <VBox prefHeight="168.0" prefWidth="78.0">
                <children>
                   <Label alignment="CENTER" prefHeight="19.0" prefWidth="75.0" text="Cheat" textFill="WHITE">
                      <font>
@@ -36,6 +44,13 @@
                      </font>
                   </Label>
                   <HBox prefHeight="13.0" prefWidth="75.0" />
+                  <ImageView fx:id="joker" fitHeight="123.0" fitWidth="78.0" pickOnBounds="true" preserveRatio="true" />
+                  <HBox prefHeight="13.0" prefWidth="44.0" />
+                  <Button fx:id="aboutCheat" mnemonicParsing="false" onAction="#aboutCheat" prefHeight="22.0" prefWidth="74.0" text="About">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Button>
                   <Button mnemonicParsing="false" onAction="#playCheat" prefWidth="75.0" text="Play" />
                </children>
             </VBox>
@@ -52,7 +67,14 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
+                  <HBox prefHeight="13.0" prefWidth="75.0" />
+                  <ImageView fx:id="jack" fitHeight="123.0" fitWidth="78.0" pickOnBounds="true" preserveRatio="true" />
                   <HBox prefHeight="13.0" prefWidth="115.0" />
+                  <Button fx:id="aboutBlackjack" mnemonicParsing="false" onAction="#aboutBlackjack" prefHeight="22.0" prefWidth="74.0" text="About">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Button>
                   <Button mnemonicParsing="false" onAction="#playBlackjack" prefWidth="75.0" text="Play" />
                </children>
             </VBox>
@@ -64,7 +86,7 @@
          <children>
             <VBox>
                <children>
-                  <Label fx:id="usernameLabel" alignment="CENTER" prefHeight="30.0" prefWidth="200.0" text="Casino" textFill="WHITE" BorderPane.alignment="CENTER">
+                  <Label fx:id="usernameLabel" alignment="CENTER" prefHeight="30.0" prefWidth="292.0" text="Casino" textFill="WHITE" BorderPane.alignment="CENTER">
                      <font>
                         <Font size="25.0" />
                      </font>

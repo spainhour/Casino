@@ -203,28 +203,14 @@ public class BlackjackGUIController {
 	void whoWon(String text){
 		ButtonType exit = new ButtonType("Exit to lobby");
 		ButtonType playAgain = new ButtonType("Play again");
-		Alert alert = new Alert(AlertType.NONE, text, playAgain, exit);
+		Alert alert = new Alert(AlertType.INFORMATION, text, playAgain, exit);
 		alert.showAndWait();
-
 		if(alert.getResult() == playAgain){
 			initialize();
 			hitNum = 1;
 			dealerFinalScore = 0;
 		} else if(alert.getResult() == exit){
-			try {
-				FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenuGUI.fxml"));
-				BorderPane root = (BorderPane) loader.load();
-				MainMenuGUIController mainMenu = (MainMenuGUIController) loader.getController();
-				Stage mainMenuStage = new Stage();
-				Scene scene = new Scene(root);
-				mainMenuStage.setScene(scene);
-				mainMenu.setUsername(usernameLabel.getText());
-				mainMenuStage.show();
-				usernameLabel.getScene().getWindow().hide();
-			} catch (Exception e) {
-				e.printStackTrace();
-				outputMessage(AlertType.ERROR, "Could not load Main Menu");
-			}
+			leaveGame();
 		}
 	}
 
@@ -260,7 +246,6 @@ public class BlackjackGUIController {
 		myScore.setText(pScore);
 		dealerScore.setText(dScore);
 		dealerFinalScore = d1.getCardVal() + d2.getCardVal();
-
 	}
 
 
@@ -273,6 +258,7 @@ public class BlackjackGUIController {
 			Stage mainMenuStage = new Stage();
 			Scene scene = new Scene(root);
 			mainMenuStage.setScene(scene);
+			mainMenu.initialize();
 			mainMenu.setUsername(usernameLabel.getText());
 			mainMenuStage.show();
 			usernameLabel.getScene().getWindow().hide();
