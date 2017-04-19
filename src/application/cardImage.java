@@ -5,7 +5,7 @@ import javafx.scene.image.ImageView;
 
 public class cardImage 
 {
-	private Image[] cardImages = new Image[53];
+	private Image[] cardImages = new Image[54];
 
 	public cardImage()
 	{
