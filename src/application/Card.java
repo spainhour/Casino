@@ -80,10 +80,6 @@ public class Card {
 		private final int val; 
 		private final int suit; 
 
-	    private card(int  val, int suit) 
-		private final int val;
-		private final int suit;
-
 	    private card(int  val, int suit)
 	    {
 	        this.val = val;

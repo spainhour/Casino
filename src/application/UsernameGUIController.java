@@ -43,6 +43,7 @@ public class UsernameGUIController {
 			Stage mainMenuStage = new Stage();
 			Scene scene = new Scene(root);
 			mainMenuStage.setScene(scene);
+			mainMenu.initialize();
 			mainMenu.setUsername(usernameTextField.getText() + "'s Casino");
 			mainMenuStage.show();
 			usernameTextField.getScene().getWindow().hide();

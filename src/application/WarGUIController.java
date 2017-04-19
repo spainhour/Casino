@@ -51,6 +51,7 @@ public class WarGUIController {
 			Scene scene = new Scene(root);
 			mainMenuStage.setScene(scene);
 			mainMenu.setUsername(usernameLabel.getText());
+			mainMenu.initialize();
 			mainMenuStage.show();
 			usernameLabel.getScene().getWindow().hide();
 		} catch (Exception e) {
