@@ -1,12 +1,11 @@
 package application;
 
-import java.awt.Image;
 import java.util.Random;
 
 public class Card {
 	private card card;
 	private cardImage cardImageArray;
-	
+
 	public Card(cardImage cI)
 	{
 		Random rn = new Random();
@@ -20,7 +19,7 @@ public class Card {
 		this.card = card.values()[cardIndex];
 		this.cardImageArray = cI;
 	}
-	
+
 	private enum card
 	{
 		ten_of_clubs ( 10, 1),
@@ -82,16 +81,22 @@ public class Card {
 		private final int suit; 
 
 	    private card(int  val, int suit) 
+		private final int val;
+		private final int suit;
+
+	    private card(int  val, int suit)
 	    {
 	        this.val = val;
 	        this.suit = suit;
 	    }
 	};
 	
+	public String toString(){ return "" + this.card.val;}
+
 	public int getCardVal(){ return this.card.val;}
 	public int getCardSuit(){ return this.card.suit;}
 	public int getCardNumber(){ return this.card.ordinal();}
 	public javafx.scene.image.Image getCardImage(){ return this.cardImageArray.get(this.card.ordinal()); }
-	
+
 }
 
