@@ -102,7 +102,7 @@ public class BlackjackGUIController {
 
 	@FXML
 	void hit(){
-		if(isOver() == false){
+		if(!isOver()){
 			if(Integer.parseInt(myScore.getText()) < 21 && hitNum == 1){
 				Card p3 = null;
 				moreHits(pThirdCard, p3);
@@ -113,11 +113,10 @@ public class BlackjackGUIController {
 				Card p5 = null;
 				moreHits(pFifthCard, p5);
 			}
-
 			dealerHit(d1, d2);
 		}
 
-		if(isOver() == true){
+		if(isOver()){
 			if(didPBust()){
 				dFirstCard.setImage(d1.getCardImage());
 				whoWon("Dealer wins!!");
@@ -129,7 +128,6 @@ public class BlackjackGUIController {
 				whoWon("Player wins!!");
 			}
 		}
-
 	}
 
 

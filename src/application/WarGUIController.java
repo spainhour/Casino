@@ -15,30 +15,98 @@ import javafx.stage.Stage;
 public class WarGUIController {
 	
 	@FXML
-	Label opponentCardsLabel;
-	@FXML
-	Label myCardsLabel;
-	@FXML
 	Button leaveGame;
 	@FXML
 	Button playCard;
 	@FXML
 	Label usernameLabel;
 	@FXML
-	ImageView cardLeft;
+	Label opponentCardCount;
 	@FXML
-	ImageView cardRight;
+	Label myCardCount;
+	@FXML
+	Label outputMessages;
+	@FXML
+	ImageView dealerCard;
+	@FXML
+	ImageView playerCard;
 	
+	int intOpponentCardCount = 26;
+	int intPlayerCardCount = 26;
+	War war = new War();
+	String winner = "";
 	
 	void initialize() {
-		Image card = new Image("PNG-cards-1.3/3_of_clubs.png");
-		cardLeft.setImage(card);
-		Image card2 = new Image("PNG-cards-1.3/6_of_spades.png");
-		cardRight.setImage(card2);
+		setCardCounts();
+		war.fillDecks();
+	}
+	
+	@FXML
+	void playCard() throws InterruptedException {
+		playerCard.setImage(war.playTopPlayerCard());
+		dealerCard.setImage(war.playTopDealerCard());
+		if (!war.cardsEqual()) {
+			winner = war.higherCardWins();
+			war.adjustCards();
+			adjustCardCounts();
+			setCardCounts();
+			outputMessages.setText(winner);
+		} else {
+			outputMessages.setText("War!");
+			winner = war.war();
+			war.adjustCards();
+			adjustCardCounts();
+			adjustCardCounts();
+			adjustCardCounts();
+			adjustCardCounts();
+			setCardCounts();
+			outputMessages.setText(winner);
+		}
+		if (gameOver()) {
+			displayWinner();
+		}
+	}
+	
+	private void displayWinner() {
+		if (intOpponentCardCount == 0) {
+			Alert alert = new Alert(AlertType.INFORMATION, "Player Wins!");
+			alert.showAndWait();
+			leaveGame();
+		} else if (intPlayerCardCount == 0){
+			Alert alert = new Alert(AlertType.INFORMATION, "Dealer Wins!");
+			alert.showAndWait();
+			leaveGame();
+		}
+	}
+	
+	private void adjustCardCounts() {
+		if (winner.equals("Player card is higher")) {
+			intPlayerCardCount += 1;
+			intOpponentCardCount -= 1;
+		} else if (winner.equals("Dealer card is higher")) {
+			intOpponentCardCount += 1;
+			intPlayerCardCount -= 1;
+		}
+	}
+	
+	public void setOutputMessagesLabel(String message) {
+		System.out.println(message);
+		outputMessages.setText(message);
+	}
+	
+	public void setCardCounts() {
+		String myCards = Integer.toString(intPlayerCardCount);
+		String opponentCards = Integer.toString(intOpponentCardCount);
+		myCardCount.setText(myCards);
+		opponentCardCount.setText(opponentCards);
 	}
 	
 	public void setUsername(String username) {
 		usernameLabel.setText(username);
+	}
+	
+	private boolean gameOver() {
+		return (intPlayerCardCount == 0 || intOpponentCardCount == 0);
 	}
 	
 	@FXML
@@ -64,5 +132,4 @@ public class WarGUIController {
 		Alert alert = new Alert(error, string);
 		alert.showAndWait();	
 	}
-
 }

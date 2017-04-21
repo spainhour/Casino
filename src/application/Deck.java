@@ -27,6 +27,21 @@ public class Deck {
 	    }
 	}
 	
+	public boolean hasNext() {
+		for (int i = 0; i < cardDeck.length - 1; i++) {
+			if (cardDeck[i + 1] != null) {
+				return true;
+			} else {
+				i++;
+			}
+		}
+		return false;
+	}
+	
+	public int size() {
+		return cardDeck.length;
+	}
+	
 	public Card getCard(int i)
 	{
 		return cardDeck[i];

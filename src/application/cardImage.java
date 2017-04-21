@@ -62,7 +62,7 @@ public class cardImage
 		cardImages[50] = new Image("PNG-cards-1.3/queen_of_diamonds.png");
 		cardImages[51] = new Image("PNG-cards-1.3/queen_of_hearts.png");
 		cardImages[52] = new Image("PNG-cards-1.3/queen_of_spades.png");
-		cardImages[53] = new Image("PNG-cards-1.3/red_joker.png");
+		//cardImages[53] = new Image("PNG-cards-1.3/red_joker.png");
 	}
 	
 	public javafx.scene.image.Image get(int index){ return this.cardImages[index]; } 
