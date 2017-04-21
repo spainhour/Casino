@@ -1,5 +1,5 @@
 package application;
-	
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -11,7 +11,7 @@ public class Main extends Application {
 	public static cardImage cardIMG = new cardImage();
 	@Override
 	public void start(Stage primaryStage) {
-		
+
 		try {
 			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("UsernameGUI.fxml"));
 			Scene scene = new Scene(root);
@@ -22,7 +22,7 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void main(String[] args) {
 		launch(args);
 	}
