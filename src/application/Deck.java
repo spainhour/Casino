@@ -4,7 +4,7 @@ import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Deck {
-	private Card[] cardDeck = new Card[53];
+	private Card[] cardDeck = new Card[54];
 	
 	public Deck(cardImage cI)
 	{
