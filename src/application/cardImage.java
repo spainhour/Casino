@@ -5,7 +5,7 @@ import javafx.scene.image.ImageView;
 
 public class cardImage 
 {
-	private Image[] cardImages = new Image[53];
+	private Image[] cardImages = new Image[52];
 
 	public cardImage()
 	{
@@ -49,19 +49,19 @@ public class cardImage
 		cardImages[37] = new Image("PNG-cards-1.3/ace_of_diamonds.png");
 		cardImages[38] = new Image("PNG-cards-1.3/ace_of_hearts.png");
 		cardImages[39] = new Image("PNG-cards-1.3/ace_of_spades.png");
-		cardImages[40] = new Image("PNG-cards-1.3/black_joker.png");
-		cardImages[41] = new Image("PNG-cards-1.3/jack_of_clubs.png");
-		cardImages[42] = new Image("PNG-cards-1.3/jack_of_diamonds.png");
-		cardImages[43] = new Image("PNG-cards-1.3/jack_of_hearts.png");
-		cardImages[44] = new Image("PNG-cards-1.3/jack_of_spades.png");
-		cardImages[45] = new Image("PNG-cards-1.3/king_of_clubs.png");
-		cardImages[46] = new Image("PNG-cards-1.3/king_of_diamonds.png");
-		cardImages[47] = new Image("PNG-cards-1.3/king_of_hearts.png");
-		cardImages[48] = new Image("PNG-cards-1.3/king_of_spades.png");
-		cardImages[49] = new Image("PNG-cards-1.3/queen_of_clubs.png");
-		cardImages[50] = new Image("PNG-cards-1.3/queen_of_diamonds.png");
-		cardImages[51] = new Image("PNG-cards-1.3/queen_of_hearts.png");
-		cardImages[52] = new Image("PNG-cards-1.3/queen_of_spades.png");
+		//cardImages[40] = new Image("PNG-cards-1.3/black_joker.png");
+		cardImages[40] = new Image("PNG-cards-1.3/jack_of_clubs.png");
+		cardImages[41] = new Image("PNG-cards-1.3/jack_of_diamonds.png");
+		cardImages[42] = new Image("PNG-cards-1.3/jack_of_hearts.png");
+		cardImages[43] = new Image("PNG-cards-1.3/jack_of_spades.png");
+		cardImages[44] = new Image("PNG-cards-1.3/king_of_clubs.png");
+		cardImages[45] = new Image("PNG-cards-1.3/king_of_diamonds.png");
+		cardImages[46] = new Image("PNG-cards-1.3/king_of_hearts.png");
+		cardImages[47] = new Image("PNG-cards-1.3/king_of_spades.png");
+		cardImages[48] = new Image("PNG-cards-1.3/queen_of_clubs.png");
+		cardImages[49] = new Image("PNG-cards-1.3/queen_of_diamonds.png");
+		cardImages[50] = new Image("PNG-cards-1.3/queen_of_hearts.png");
+		cardImages[51] = new Image("PNG-cards-1.3/queen_of_spades.png");
 		//cardImages[53] = new Image("PNG-cards-1.3/red_joker.png");
 	}
 	
