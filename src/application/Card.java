@@ -62,7 +62,7 @@ public class Card {
 		ace_of_diamonds ( 15, 2),
 		ace_of_hearts ( 15, 3),
 		ace_of_spades ( 15, 4),
-		//black_joker ( 0, 0),
+		black_joker ( 0, 0),
 		jack_of_clubs ( 12, 1),
 		jack_of_diamonds ( 12, 3),
 		jack_of_hearts ( 12, 3),
