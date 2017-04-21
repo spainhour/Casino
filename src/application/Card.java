@@ -12,7 +12,7 @@ public class Card {
 		this.card = card.values()[rn.nextInt(card.values().length)];
 		this.cardImageArray = cI;
 	}
-	
+
 	public Card(cardImage cI, int cardIndex)
 	{
 		Random rn = new Random();
@@ -62,7 +62,7 @@ public class Card {
 		ace_of_diamonds ( 15, 2),
 		ace_of_hearts ( 15, 3),
 		ace_of_spades ( 15, 4),
-		black_joker ( 0, 0),
+		//black_joker ( 0, 0),
 		jack_of_clubs ( 12, 1),
 		jack_of_diamonds ( 12, 3),
 		jack_of_hearts ( 12, 3),
@@ -75,10 +75,10 @@ public class Card {
 		queen_of_diamonds ( 13, 2),
 		queen_of_hearts ( 13, 3),
 		queen_of_spades ( 13, 4);
-//		red_joker ( 0, 0); 
-		
-		private final int val; 
-		private final int suit; 
+//		red_joker ( 0, 0);
+
+		private final int val;
+		private final int suit;
 
 	    private card(int  val, int suit)
 	    {
@@ -86,7 +86,7 @@ public class Card {
 	        this.suit = suit;
 	    }
 	};
-	
+
 	public String toString(){ return "" + this.card.val;}
 
 	public int getCardVal(){ return this.card.val;}
