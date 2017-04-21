@@ -9,7 +9,7 @@ public class Blackjack {
 	private Card dealer1 = new Card(new cardImage());
 	private Card dealer2 = new Card(new cardImage());*/
 	private int index = 0;
-	Deck aDeck = new Deck(new cardImage());
+	Deck aDeck = new Deck(Main.cardIMG);
 	public Hand playerHand;
 	public Hand dealerHand;
 
@@ -44,7 +44,7 @@ public class Blackjack {
 
 	public void reset()
 	{
-		aDeck = new Deck(new cardImage());
+		aDeck = new Deck(Main.cardIMG);
 		dealerHand = new Hand();
 		playerHand = new Hand();
 		playerBusted = false;
