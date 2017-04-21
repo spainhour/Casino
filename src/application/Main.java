@@ -8,8 +8,10 @@ import javafx.scene.layout.BorderPane;
 
 
 public class Main extends Application {
+	public static cardImage cardIMG = new cardImage();
 	@Override
 	public void start(Stage primaryStage) {
+		
 		try {
 			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("UsernameGUI.fxml"));
 			Scene scene = new Scene(root);

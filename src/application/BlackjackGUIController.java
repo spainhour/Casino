@@ -98,6 +98,7 @@ public class BlackjackGUIController {
 		game.dealersTurn();
 		if(game.dealerBusted == true){
 			winner("Player wins!!");
+
 		}
 		setScores();
 

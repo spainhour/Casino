@@ -58,24 +58,24 @@ public class Card {
 		nine_of_diamonds ( 9, 2),
 		nine_of_hearts ( 9, 3),
 		nine_of_spades ( 9, 4),
-		ace_of_clubs ( 1, 1),
-		ace_of_diamonds ( 1, 2),
-		ace_of_hearts ( 1, 3),
-		ace_of_spades ( 1, 4),
+		ace_of_clubs ( 15, 1),
+		ace_of_diamonds ( 15, 2),
+		ace_of_hearts ( 15, 3),
+		ace_of_spades ( 15, 4),
 		black_joker ( 0, 0),
 		jack_of_clubs ( 12, 1),
 		jack_of_diamonds ( 12, 3),
 		jack_of_hearts ( 12, 3),
 		jack_of_spades ( 12, 4),
-		king_of_clubs ( 13, 1),
-		king_of_diamonds ( 13, 2),
-		king_of_hearts ( 13, 3),
-		king_of_spades ( 13, 4),
-		queen_of_clubs ( 14, 2),
-		queen_of_diamonds ( 14, 2),
-		queen_of_hearts ( 14, 3),
-		queen_of_spades ( 14, 4),
-		red_joker ( 0, 0);
+		king_of_clubs ( 14, 1),
+		king_of_diamonds ( 14, 2),
+		king_of_hearts ( 14, 3),
+		king_of_spades ( 14, 4),
+		queen_of_clubs ( 13, 2),
+		queen_of_diamonds ( 13, 2),
+		queen_of_hearts ( 13, 3),
+		queen_of_spades ( 13, 4);
+//		red_joker ( 0, 0); 
 		
 		private final int val; 
 		private final int suit; 
