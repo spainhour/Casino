@@ -2,6 +2,7 @@ package application;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
@@ -50,204 +51,99 @@ public class BlackjackGUIController {
 	@FXML
 	Label dealerScore;
 
-	int hitNum = 1;
-	int dealerFinalScore = 0;
-	Card d1;
-	Card d2;
+	Blackjack game = new Blackjack();
+	int hitNum = 0;
 
-
-	void initialize() {
-		Card p1 = new Card(new cardImage());
-		Card p2 = new Card(new cardImage());
-		// Need to fix this. The card constructor automatically generates a random card
-		// so causes a bug here. Looking into it.
-		/*if(p1.getCardNumber() == 40 || p2.getCardNumber() == 40 ){
-			Card p1 = new Card(new cardImage());
-			Card p2 = new Card(new cardImage());
-		}*/
-		pFirstCard.setImage(p1.getCardImage());
-		pSecondCard.setImage(p2.getCardImage());
-
-		d1 = new Card(new cardImage());
-		d2 = new Card(new cardImage());
-
-		//dFirstCard.setImage(new Image("\src\blackCard.jpg"));
-		dSecondCard.setImage(d2.getCardImage());
-		setInitialScore(p1,p2,d1,d2);
-
+	void initialize() throws IOException {
+		game.newGameAction();
+		game.reset();
+		game.deal();
+		pFirstCard.setImage(game.playerHand.getCard(0).getCardImage());
+		pSecondCard.setImage(game.playerHand.getCard(1).getCardImage());
+		dSecondCard.setImage(game.dealerHand.getCard(1).getCardImage());
 		pThirdCard.setImage(null);
 		pFourthCard.setImage(null);
 		pFifthCard.setImage(null);
 
-		if(isOver() == true){
-			if(didPBust()){
-				dFirstCard.setImage(d1.getCardImage());
-				whoWon("Dealer wins!!");
-			} else if(isTwentyOne()){
-				dFirstCard.setImage(d1.getCardImage());
-				whoWon("Player wins!!");
-			} else if(didDBust()){
-				dFirstCard.setImage(d1.getCardImage());
-				whoWon("Player wins!!");
-			} else if(dealerFinalScore == 21){
-				dFirstCard.setImage(d1.getCardImage());
-				whoWon("Player wins!!");
-			}
-		}
+		setScores();
+
 	}
 
 	public void setUsername(String username) {
 		usernameLabel.setText(username);
 	}
 
-	@FXML
-	void hit(){
-		if(isOver() == false){
-			if(Integer.parseInt(myScore.getText()) < 21 && hitNum == 1){
-				Card p3 = null;
-				moreHits(pThirdCard, p3);
-			} else if(Integer.parseInt(myScore.getText()) < 21 && hitNum == 2){
-				Card p4 = null;
-				moreHits(pFourthCard, p4);
-			} else if(Integer.parseInt(myScore.getText()) < 21 && hitNum == 3){
-				Card p5 = null;
-				moreHits(pFifthCard, p5);
-			}
-
-			dealerHit(d1, d2);
-		}
-
-		if(isOver() == true){
-			if(didPBust()){
-				dFirstCard.setImage(d1.getCardImage());
-				whoWon("Dealer wins!!");
-			} else if(didDBust()){
-				dFirstCard.setImage(d1.getCardImage());
-				whoWon("Player wins!!");
-			} else if(isTwentyOne()){
-				dFirstCard.setImage(d1.getCardImage());
-				whoWon("Player wins!!");
-			}
-		}
-
-	}
-
-
-	void moreHits(ImageView pImage, Card pNum){
-		pNum = new Card(new cardImage());
-		pImage.setImage(pNum.getCardImage());
-		calculateScore(Integer.parseInt(myScore.getText()), pNum);
-		hitNum++;
-
-	}
-
-	private void calculateScore(int current, Card p) {
-		if(p.getCardNumber() == 36 || p.getCardNumber() == 37 || p.getCardNumber() == 38 || p.getCardNumber() == 39 ){
-			int num = whatValue();
-			String score = Integer.toString(current + num);
-			myScore.setText(score);
-		} else{
-			String score = Integer.toString(current + p.getCardVal());
-			myScore.setText(score);
-		}
-	}
-
-	private int whatValue() {
-		ButtonType one = new ButtonType("1");
-		ButtonType eleven = new ButtonType("11");
-		Alert alert = new Alert(AlertType.NONE, "What value do you want your Ace to be?", one, eleven);
-		alert.showAndWait();
-
-		if(alert.getResult() == one){
-			return 1;
-		} else if(alert.getResult() == eleven){
-			return 11;
-		}
-
-		return 1;
-	}
-
-	void dealerHit(Card d1, Card d2){
-		if(d1.getCardVal() + d2.getCardVal() <= 16){
-			Card d3 = new Card(new cardImage());
-			System.out.println(d3.getCardVal());
-			dealerFinalScore = dealerFinalScore + d3.getCardVal();
-			System.out.println(dealerFinalScore);
-		}
-	}
-
-	@FXML
-	void stand(){
-		int playerFinalScore = Integer.parseInt(myScore.getText());
-		if(dealerFinalScore == 21 && playerFinalScore == 21){
-			dFirstCard.setImage(d1.getCardImage());
-			whoWon("It's a push!!");
-		} else if(isTwentyOne()){
-			dFirstCard.setImage(d1.getCardImage());
-			whoWon( "Player wins!!");
-		} else if(playerFinalScore > dealerFinalScore ){
-			dFirstCard.setImage(d1.getCardImage());
-			whoWon("Player wins!!");
-		} else if(didPBust()){
-			dFirstCard.setImage(d1.getCardImage());
-			whoWon( "Dealer wins!!");
-		} else if(didDBust()){
-			dFirstCard.setImage(d1.getCardImage());
-			whoWon( "Player wins!!");
-		}  else{
-			dFirstCard.setImage(d1.getCardImage());
-			whoWon("Dealer wins!!");
-		}
-	}
-
-	void whoWon(String text){
-		ButtonType exit = new ButtonType("Exit to lobby");
-		ButtonType playAgain = new ButtonType("Play again");
-		Alert alert = new Alert(AlertType.INFORMATION, text, playAgain, exit);
-		alert.showAndWait();
-		if(alert.getResult() == playAgain){
-			initialize();
-			hitNum = 1;
-			dealerFinalScore = 0;
-		} else if(alert.getResult() == exit){
-			leaveGame();
-		}
-	}
-
-
-	boolean didPBust(){
-		if(Integer.parseInt(myScore.getText()) > 21){
-			return true;
-		} return false;
-	}
-
-	boolean didDBust(){
-		if(dealerFinalScore > 21){
-			return true;
-		} return false;
-	}
-
-	boolean isTwentyOne(){
-		if(Integer.parseInt(myScore.getText()) == 21){
-			return true;
-		} return false;
-	}
-
-	boolean isOver(){
-		if(didDBust() == true || didPBust() == true || isTwentyOne() == true){
-			return true;
-		} return false;
-	}
-
-
-	void setInitialScore(Card p1, Card p2, Card d1, Card d2){
-		String pScore = Integer.toString(p1.getCardVal() + p2.getCardVal());
-		String dScore = Integer.toString(d1.getCardVal() + d2.getCardVal());
+	void setScores(){
+		String pScore = Integer.toString(game.playerHand.getTotal(true));
+		String dScore = Integer.toString(game.dealerHand.getTotal(true));
 		myScore.setText(pScore);
 		dealerScore.setText(dScore);
-		dealerFinalScore = d1.getCardVal() + d2.getCardVal();
 	}
 
+	@FXML
+	void hit() throws IOException{
+		game.playerHit();
+		if(hitNum == 0){
+			pThirdCard.setImage(game.playerHand.getCard(2).getCardImage());
+		} else if(hitNum == 1){
+			pFourthCard.setImage(game.playerHand.getCard(3).getCardImage());
+		} else if(hitNum == 2){
+			pFifthCard.setImage(game.playerHand.getCard(4).getCardImage());
+		}
+
+		hitNum += 1;
+		if(game.playerBusted == true){
+			winner("Dealer wins!!");
+		}
+		game.dealersTurn();
+		if(game.dealerBusted == true){
+			winner("Player wins!!");
+		}
+		setScores();
+
+
+	}
+
+
+	void checkWin() throws IOException{
+		game.checkForWinner();
+		if(game.dealerWins == true){
+			winner("Dealer wins!!");
+		} else if(game.playerWins == true){
+			winner("Player wins!!");
+		} else if(game.push == true){
+			winner("It's a push!!");
+		}
+	}
+
+	@FXML
+	void stand() throws IOException{
+		checkWin();
+	}
+
+	void winner(String whoWon) throws IOException{
+		ButtonType playAgain = new ButtonType("Play again?");
+		ButtonType exit = new ButtonType("Exit to lobby?");
+		Alert alert = new Alert(AlertType.NONE, whoWon, playAgain, exit);
+		alert.showAndWait();
+		if(alert.getResult() == playAgain){
+			game.reset();
+			initialize();
+		}
+		if(alert.getResult() == exit){
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenuGUI.fxml"));
+			BorderPane root = (BorderPane) loader.load();
+			MainMenuGUIController mainMenu = (MainMenuGUIController) loader.getController();
+			Stage mainMenuStage = new Stage();
+			Scene scene = new Scene(root);
+			mainMenuStage.setScene(scene);
+			mainMenu.initialize();
+			mainMenu.setUsername(usernameLabel.getText());
+			mainMenuStage.show();
+			usernameLabel.getScene().getWindow().hide();
+		}
+
+	}
 
 	@FXML
 	void leaveGame() {
