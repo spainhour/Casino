@@ -129,6 +129,7 @@ public class BlackjackGUIController {
 		alert.showAndWait();
 		if(alert.getResult() == playAgain){
 			game.reset();
+			hitNum = 0;
 			initialize();
 		}
 		if(alert.getResult() == exit){

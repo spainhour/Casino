@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.Alert.AlertType;
@@ -13,7 +14,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class WarGUIController {
-	
+
 	@FXML
 	Button leaveGame;
 	@FXML
@@ -30,17 +31,18 @@ public class WarGUIController {
 	ImageView dealerCard;
 	@FXML
 	ImageView playerCard;
-	
+
+
 	int intOpponentCardCount = 26;
 	int intPlayerCardCount = 26;
 	War war = new War();
 	String winner = "";
-	
+
 	void initialize() {
 		setCardCounts();
 		war.fillDecks();
 	}
-	
+
 	@FXML
 	void playCard() throws InterruptedException {
 		playerCard.setImage(war.playTopPlayerCard());
@@ -66,7 +68,7 @@ public class WarGUIController {
 			displayWinner();
 		}
 	}
-	
+
 	private void displayWinner() {
 		if (intOpponentCardCount == 0) {
 			Alert alert = new Alert(AlertType.INFORMATION, "Player Wins!");
@@ -78,7 +80,7 @@ public class WarGUIController {
 			leaveGame();
 		}
 	}
-	
+
 	private void adjustCardCounts() {
 		if (winner.equals("Player card is higher")) {
 			intPlayerCardCount += 1;
@@ -88,27 +90,27 @@ public class WarGUIController {
 			intPlayerCardCount -= 1;
 		}
 	}
-	
+
 	public void setOutputMessagesLabel(String message) {
 		System.out.println(message);
 		outputMessages.setText(message);
 	}
-	
+
 	public void setCardCounts() {
 		String myCards = Integer.toString(intPlayerCardCount);
 		String opponentCards = Integer.toString(intOpponentCardCount);
 		myCardCount.setText(myCards);
 		opponentCardCount.setText(opponentCards);
 	}
-	
+
 	public void setUsername(String username) {
 		usernameLabel.setText(username);
 	}
-	
+
 	private boolean gameOver() {
 		return (intPlayerCardCount == 0 || intOpponentCardCount == 0);
 	}
-	
+
 	@FXML
 	void leaveGame() {
 		try {
@@ -127,9 +129,9 @@ public class WarGUIController {
 			outputMessage(AlertType.ERROR, "Could not load Main Menu");
 		}
 	}
-	
+
 	private void outputMessage(AlertType error, String string) {
 		Alert alert = new Alert(error, string);
-		alert.showAndWait();	
+		alert.showAndWait();
 	}
 }
