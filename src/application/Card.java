@@ -75,10 +75,10 @@ public class Card {
 		queen_of_diamonds ( 12, 2),
 		queen_of_hearts ( 12, 3),
 		queen_of_spades ( 12, 4);
-//		red_joker ( 0, 0); 
-		
-		private final int val; 
-		private final int suit; 
+//		red_joker ( 0, 0);
+
+		private final int val;
+		private final int suit;
 
 	    private card(int  val, int suit)
 	    {
