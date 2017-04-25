@@ -27,18 +27,14 @@ public class War {
 		for (int i = 26; i < 52; i++) {
 			dealerDeck.add(mainDeck.getCard(i));
 		}
-		System.out.println(playerDeck.size());
-		System.out.println(dealerDeck.size());
 	}
 	
 	public boolean gameOver() {
 		return (playerDeck.size() == 0 || dealerDeck.size() == 0);
-		
 	}	
 
 	public boolean cardsEqual() {
 		return currentPlayerCard.getCardVal() == currentDealerCard.getCardVal();
-	//	return currentPlayerCard.getCardNumber() == currentDealerCard.getCardNumber();
 	}
 	
 	public String higherCardWins() {

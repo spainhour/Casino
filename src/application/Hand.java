@@ -46,7 +46,5 @@ class Hand
 		return myHand.toString();
 	}
 
-
-
 }
 
