@@ -15,6 +15,8 @@ public class War {
 	Card currentDealerCard;
 	WarGUIController warGUI;
 	boolean winner = false;
+	int currentPlayerCardValue;
+	int currentDealerCardValue;
 	
 	public War() {
 	}
@@ -34,11 +36,19 @@ public class War {
 	}	
 
 	public boolean cardsEqual() {
-		return currentPlayerCard.getCardVal() == currentDealerCard.getCardVal();
+		currentPlayerCardValue = currentPlayerCard.getCardVal();
+		currentDealerCardValue = currentDealerCard.getCardVal();
+		if (currentPlayerCardValue == 1) {
+			currentPlayerCardValue = 15;
+		}
+		if (currentDealerCardValue == 1) {
+			currentDealerCardValue = 15;
+		}
+		return currentPlayerCardValue == currentDealerCardValue;
 	}
 	
 	public String higherCardWins() {
-		if (currentPlayerCard.getCardVal() > currentDealerCard.getCardVal()) {
+		if (currentPlayerCardValue > currentDealerCardValue) {
 			winner = true;
 			return "Player card is higher";
 		} else {
