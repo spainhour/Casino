@@ -4,10 +4,6 @@ import java.util.ArrayList;
 
 public class Blackjack {
 
-	/*private Card player1 = new Card(new cardImage());
-	private Card player2 = new Card(new cardImage());
-	private Card dealer1 = new Card(new cardImage());
-	private Card dealer2 = new Card(new cardImage());*/
 	private int index = 0;
 	Deck aDeck = new Deck(Main.cardIMG);
 	public Hand playerHand;
@@ -23,17 +19,16 @@ public class Blackjack {
 	public boolean dealerWins;
 	public boolean push;
 
+	public int points = 1000;
+	public int bet;
+
 	private ArrayList<Card> cards;
 	int playerTotal = 0;
 	int dealerTotal = 0;
 
-	public void BlackJack(){ //Card player1, Card player2, Card dealer1, Card dealer2){
-		/*this.player1 = player1;
-		this.player2 = player2;
-		this.dealer1 = dealer1;
-		this.dealer2 = dealer2;*/
-		this.cards = cards;
 
+	public Blackjack(){
+		this.cards = cards;
 	}
 
 	public void newGameAction(){
@@ -41,6 +36,11 @@ public class Blackjack {
 		gameOver = true;
 		aDeck.shuffle();
 	}
+
+	public void setBet(int b){
+		bet =  b;
+	}
+
 
 	public void reset()
 	{
@@ -59,6 +59,14 @@ public class Blackjack {
 
 	}
 
+	void betting(){
+		if(playerWins || push){
+			points = points + bet;
+		} else{
+			points = points - bet;
+		}
+	}
+
 	public void deal(){
 		playerHand = new Hand();
 		dealerHand = new Hand();
@@ -68,7 +76,7 @@ public class Blackjack {
 		dealerHand.add(aDeck.getRandomCard());
 	}
 
-	
+
 	public void playerHit()
 	{
 		playerHand.add(aDeck.getRandomCard());
@@ -92,35 +100,19 @@ public class Blackjack {
 
 	public void checkForWinner()
 	{
-		if(playerBusted)
-		{
+		if(!playerBusted && !dealerBusted && playerHand.getTotal(true) > dealerHand.getTotal(true)){
+			playerWins = true;
+		} else if(!playerBusted && !dealerBusted && playerHand.getTotal(true)< dealerHand.getTotal(true)){
 			dealerWins = true;
-			//System.out.println("Dealer wins");
-		}
-		else
-			if(dealerBusted)
-			{
-				playerWins = true;
-				//System.out.println("Player wins");
-			}
-			else
-				if(playerHand.getTotal(true)>dealerHand.getTotal(true))
-				{
-					playerWins = true;
-					//System.out.println("Player wins");
-				}
-				else
-					if(playerHand.getTotal(true)< dealerHand.getTotal(true))
-					{
-						dealerWins = true;
-						//System.out.println("Dealer wins");
+		} else if(playerHand.getTotal(true) == dealerHand.getTotal(true)){
+			push = true;
+		} else if(playerBusted){
+			dealerWins = true;
+		} else if(dealerBusted){
+			playerWins = true;
+		} 
 
-					}
-					else
-						if(playerHand.getTotal(true) == dealerHand.getTotal(true))
-						{
-							push = true;
-						}
+		betting();
 	}
 
 	public String toString(){

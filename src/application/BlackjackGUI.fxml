@@ -2,10 +2,12 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -32,22 +34,47 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
+                        <Pane prefHeight="200.0" prefWidth="200.0" />
                      </children>
                   </VBox>
                </children>
             </HBox>
-            <HBox prefHeight="35.0" prefWidth="414.0">
+            <HBox prefHeight="140.0" prefWidth="414.0">
                <children>
-                  <Label alignment="TOP_RIGHT" prefHeight="29.0" prefWidth="68.0" style="-fx-label-padding: 5;" text="Dealer:" textFill="WHITE">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="dealerScore" style="-fx-label-padding: 5;" text="Label" textFill="WHITE">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
+                  <Pane prefHeight="155.0" prefWidth="414.0">
+                     <children>
+                        <Label alignment="TOP_RIGHT" layoutY="106.0" prefHeight="29.0" prefWidth="68.0" style="-fx-label-padding: 5;" text="Dealer:" textFill="WHITE">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="dealerScore" layoutX="70.0" layoutY="107.0" style="-fx-label-padding: 5;" text="Label" textFill="WHITE">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Pane layoutX="54.0" layoutY="14.0" prefHeight="80.0" prefWidth="306.0">
+                           <children>
+                              <Label alignment="TOP_RIGHT" layoutX="47.0" layoutY="10.0" prefHeight="29.0" prefWidth="115.0" style="-fx-label-padding: 5;" text="Your Money: $" textFill="WHITE">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="myPoints" layoutX="151.0" layoutY="9.0" style="-fx-label-padding: 5;" text="Label" textFill="WHITE">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="TOP_RIGHT" layoutX="60.0" layoutY="40.0" prefHeight="29.0" prefWidth="90.0" style="-fx-label-padding: 5;" text="Your Bet:" textFill="WHITE">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Spinner fx:id="bet" layoutX="150.0" layoutY="42.0" prefHeight="25.0" prefWidth="62.0" />
+                           </children>
+                        </Pane>
+                     </children>
+                  </Pane>
                </children>
             </HBox>
          </children>

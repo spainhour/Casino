@@ -14,6 +14,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.SpinnerValueFactory.IntegerSpinnerValueFactory;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -49,7 +53,13 @@ public class BlackjackGUIController {
 	Label myScore;
 
 	@FXML
+	Label myPoints;
+
+	@FXML
 	Label dealerScore;
+
+	@FXML
+	Spinner bet;
 
 	Blackjack game = new Blackjack();
 	int hitNum = 0;
@@ -64,9 +74,18 @@ public class BlackjackGUIController {
 		pThirdCard.setImage(null);
 		pFourthCard.setImage(null);
 		pFifthCard.setImage(null);
+		myPoints.setText(Integer.toString(game.points));
+		//System.out.println(game.points);
+
+		 IntegerSpinnerValueFactory valueFactory = //
+	                new IntegerSpinnerValueFactory.IntegerSpinnerValueFactory(0, 1000, 10, 10);
+		 bet.setValueFactory(valueFactory);
 
 		setScores();
-
+		while(game.playerHand.getTotal(true) > 21 || game.dealerHand.getTotal(true) > 21){
+			game.newGameAction();
+			game.reset();
+		}
 	}
 
 	public void setUsername(String username) {
@@ -82,6 +101,8 @@ public class BlackjackGUIController {
 
 	@FXML
 	void hit() throws IOException{
+		game.setBet((int) bet.getValue());
+		//System.out.println(bet.getValue());
 		game.playerHit();
 		if(hitNum == 0){
 			pThirdCard.setImage(game.playerHand.getCard(2).getCardImage());
@@ -90,24 +111,18 @@ public class BlackjackGUIController {
 		} else if(hitNum == 2){
 			pFifthCard.setImage(game.playerHand.getCard(4).getCardImage());
 		}
-		
+
 		setScores();
 
 		hitNum += 1;
-		if(game.playerBusted == true){
-			winner("Dealer wins!!");
-		}
-		game.dealersTurn();
-		if(game.dealerBusted == true){
-			winner("Player wins!!");
-
-		}
+		checkWin();
 
 
 	}
 
 
 	void checkWin() throws IOException{
+		setScores();
 		game.checkForWinner();
 		if(game.dealerWins == true){
 			winner("Dealer wins!!");
