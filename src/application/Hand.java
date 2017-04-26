@@ -41,6 +41,14 @@ public class Hand
 		return total;
 	}
 
+	public boolean contains(){
+		for(int i = 0; i < myHand.size(); i++){
+			if(myHand.get(i).getCardVal() == 1){
+				return true;
+			}
+		} return false;
+	}
+
 	public String toString()
 	{
 		return myHand.toString();

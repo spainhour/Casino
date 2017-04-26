@@ -3,6 +3,7 @@ package application;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
@@ -12,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
@@ -61,8 +63,13 @@ public class BlackjackGUIController {
 	@FXML
 	Spinner bet;
 
+	@FXML
+	ChoiceBox aceValue;
+
 	Blackjack game = new Blackjack();
 	int hitNum = 0;
+
+	List<String> values = new List<String>("Ace Value", "1", "11");
 
 	void initialize() throws IOException {
 		game.newGameAction();
@@ -75,9 +82,13 @@ public class BlackjackGUIController {
 		pFourthCard.setImage(null);
 		pFifthCard.setImage(null);
 		myPoints.setText(Integer.toString(game.points));
-		//System.out.println(game.points);
+		aceValue.set
 
-		 IntegerSpinnerValueFactory valueFactory = //
+		if(game.playerHand.contains()){
+			aceValue.setVisible(true);
+		}
+
+		IntegerSpinnerValueFactory valueFactory = //
 	                new IntegerSpinnerValueFactory.IntegerSpinnerValueFactory(0, 1000, 10, 10);
 		 bet.setValueFactory(valueFactory);
 
@@ -102,7 +113,6 @@ public class BlackjackGUIController {
 	@FXML
 	void hit() throws IOException{
 		game.setBet((int) bet.getValue());
-		//System.out.println(bet.getValue());
 		game.playerHit();
 		if(hitNum == 0){
 			pThirdCard.setImage(game.playerHand.getCard(2).getCardImage());
