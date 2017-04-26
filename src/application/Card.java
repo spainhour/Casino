@@ -3,7 +3,7 @@ package application;
 import java.util.Random;
 
 public class Card {
-	private card card;
+	private static card card;
 	private cardImage cardImageArray;
 
 	public Card(cardImage cI)
@@ -80,6 +80,9 @@ public class Card {
 		private final int val;
 		private final int suit;
 
+		
+		
+		
 	    private card(int  val, int suit)
 	    {
 	        this.val = val;
@@ -87,6 +90,11 @@ public class Card {
 	    }
 	};
 
+	public static int getDeckSize()
+	{
+		return card.values().length;
+	}
+	
 	public String toString(){ return "" + this.card.val;}
 	
 	public int getCardVal(){ return this.card.val;}
