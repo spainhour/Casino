@@ -1,9 +1,11 @@
 package application;
 
+import java.awt.List;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.imageio.ImageIO;
 
@@ -69,7 +71,7 @@ public class BlackjackGUIController {
 	Blackjack game = new Blackjack();
 	int hitNum = 0;
 
-	List<String> values = new List<String>("Ace Value", "1", "11");
+	//List<String> values = new ArrayList<>(Arrays.asList("Ace Value", "1", "11"));
 
 	void initialize() throws IOException {
 		game.newGameAction();
@@ -82,7 +84,7 @@ public class BlackjackGUIController {
 		pFourthCard.setImage(null);
 		pFifthCard.setImage(null);
 		myPoints.setText(Integer.toString(game.points));
-		aceValue.set
+		//aceValue.set
 
 		if(game.playerHand.contains()){
 			aceValue.setVisible(true);
