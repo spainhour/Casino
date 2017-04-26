@@ -88,7 +88,7 @@ public class Card {
 	};
 
 	public String toString(){ return "" + this.card.val;}
-
+	
 	public int getCardVal(){ return this.card.val;}
 	public int getCardSuit(){ return this.card.suit;}
 	public int getCardNumber(){ return this.card.ordinal();}

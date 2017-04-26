@@ -16,6 +16,8 @@ public class War {
 	Card currentDealerCard;
 	WarGUIController warGUI;
 	boolean winner = false;
+	int currentPlayerCardValue;
+	int currentDealerCardValue;
 	
 	public War() {
 	}
@@ -28,22 +30,26 @@ public class War {
 		for (int i = 26; i < 52; i++) {
 			dealerDeck.add(mainDeck.getCard(i));
 		}
-		System.out.println(playerDeck.size());
-		System.out.println(dealerDeck.size());
 	}
 	
 	public boolean gameOver() {
 		return (playerDeck.size() == 0 || dealerDeck.size() == 0);
-		
 	}	
 
 	public boolean cardsEqual() {
-		return currentPlayerCard.getCardVal() == currentDealerCard.getCardVal();
-	//	return currentPlayerCard.getCardNumber() == currentDealerCard.getCardNumber();
+		currentPlayerCardValue = currentPlayerCard.getCardVal();
+		currentDealerCardValue = currentDealerCard.getCardVal();
+		if (currentPlayerCardValue == 1) {
+			currentPlayerCardValue = 15;
+		}
+		if (currentDealerCardValue == 1) {
+			currentDealerCardValue = 15;
+		}
+		return currentPlayerCardValue == currentDealerCardValue;
 	}
 	
 	public String higherCardWins() {
-		if (currentPlayerCard.getCardVal() > currentDealerCard.getCardVal()) {
+		if (currentPlayerCardValue > currentDealerCardValue) {
 			winner = true;
 			return "Player card is higher";
 		} else {
