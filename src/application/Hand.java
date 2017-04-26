@@ -3,7 +3,7 @@ package application;
 
 import java.util.ArrayList;
 
-class Hand
+public class Hand
 {
 	private ArrayList<Card> myHand = new ArrayList<Card>();
 

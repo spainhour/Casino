@@ -11,16 +11,16 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 
 public class UsernameGUIController {
-	
+
 	@FXML
 	Label enterUsername;
-	
-	@FXML 
+
+	@FXML
 	TextField usernameTextField;
-	
+
 	void initialize() {
 	}
-	
+
 	@FXML
 	void getUsername() {
 		if (usernameTextField.getText().equals("")) {
@@ -29,12 +29,12 @@ public class UsernameGUIController {
 			showMainMenu();
 		}
 	}
-	
+
 	private void outputMessage(AlertType alertType, String message) {
 		Alert alert = new Alert(alertType, message);
 		alert.showAndWait();
 	}
-	
+
 	private void showMainMenu() {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenuGUI.fxml"));

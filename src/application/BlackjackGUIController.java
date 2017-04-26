@@ -90,6 +90,8 @@ public class BlackjackGUIController {
 		} else if(hitNum == 2){
 			pFifthCard.setImage(game.playerHand.getCard(4).getCardImage());
 		}
+		
+		setScores();
 
 		hitNum += 1;
 		if(game.playerBusted == true){
@@ -100,7 +102,6 @@ public class BlackjackGUIController {
 			winner("Player wins!!");
 
 		}
-		setScores();
 
 
 	}
