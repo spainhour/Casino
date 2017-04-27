@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Blackjack {
 
 	private int index = 0;
-	Deck aDeck = new Deck(Main.cardIMG);
+	Deck aDeck = new Deck();
 	public Hand playerHand;
 	public Hand dealerHand;
 
@@ -28,7 +28,7 @@ public class Blackjack {
 
 
 	public Blackjack(){
-		this.cards = cards;
+		//this.cards = cards;
 	}
 
 	public void newGameAction(){
@@ -44,7 +44,7 @@ public class Blackjack {
 
 	public void reset()
 	{
-		aDeck = new Deck(Main.cardIMG);
+		//aDeck = new Deck(Main.cardIMG);
 		dealerHand = new Hand();
 		playerHand = new Hand();
 		playerBusted = false;
@@ -74,6 +74,7 @@ public class Blackjack {
 		dealerHand.add(aDeck.getRandomCard());
 		playerHand.add(aDeck.getRandomCard());
 		dealerHand.add(aDeck.getRandomCard());
+
 	}
 
 
@@ -110,7 +111,7 @@ public class Blackjack {
 			dealerWins = true;
 		} else if(dealerBusted){
 			playerWins = true;
-		} 
+		}
 
 		betting();
 	}

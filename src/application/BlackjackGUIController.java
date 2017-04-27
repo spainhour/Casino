@@ -117,7 +117,7 @@ public class BlackjackGUIController {
 		game.setBet((int) bet.getValue());
 		game.playerHit();
 		if(hitNum == 0){
-			pThirdCard.setImage(game.playerHand.getCard(2).getCardImage());
+			pThirdCard.setImage(game.playerHand.getCard(1).getCardImage());
 		} else if(hitNum == 1){
 			pFourthCard.setImage(game.playerHand.getCard(3).getCardImage());
 		} else if(hitNum == 2){

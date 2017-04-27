@@ -1,26 +1,30 @@
 package application;
 
+import java.lang.reflect.Array;
 import java.util.Random;
 
 public class Card {
-	private static card card;
+	public cardEnum card;
+	public static cardEnum staticCard;
 	private cardImage cardImageArray;
 
-	public Card(cardImage cI)
+	public Card()
 	{
+		this.cardImageArray = Main.cardIMG;
 		Random rn = new Random();
 		this.card = card.values()[rn.nextInt(card.values().length)];
-		this.cardImageArray = cI;
 	}
 
-	public Card(cardImage cI, int cardIndex)
+	public Card( int cardIndex)
 	{
-		Random rn = new Random();
-		this.card = card.values()[cardIndex];
-		this.cardImageArray = cI;
+		this.cardImageArray = Main.cardIMG;
+		//this.card = application.Card.card.values()[cardIndex];
+		cardEnum[] cardValues = cardEnum.values();
+		this.card = cardValues[cardIndex];
+		System.out.println(this.card.ordinal());
 	}
 
-	private enum card
+	public enum cardEnum
 	{
 		ten_of_clubs ( 10, 1),
 		ten_of_diamonds ( 10, 2),
@@ -80,10 +84,10 @@ public class Card {
 		private final int val;
 		private final int suit;
 
-		
-		
-		
-	    private card(int  val, int suit)
+
+
+
+	    private cardEnum(int  val, int suit)
 	    {
 	        this.val = val;
 	        this.suit = suit;
@@ -92,11 +96,11 @@ public class Card {
 
 	public static int getDeckSize()
 	{
-		return card.values().length;
+		return staticCard.values().length;
 	}
-	
+
 	public String toString(){ return "" + this.card.val;}
-	
+
 	public int getCardVal(){ return this.card.val;}
 	public int getCardSuit(){ return this.card.suit;}
 	public int getCardNumber(){ return this.card.ordinal();}

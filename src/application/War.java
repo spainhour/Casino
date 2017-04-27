@@ -6,8 +6,8 @@ import javafx.scene.image.Image;
 
 
 public class War {
-	
-	Deck mainDeck = new Deck(Main.cardIMG);
+
+	Deck mainDeck = new Deck();
 	ArrayList<Card> playerDeck = new ArrayList<>();
 	ArrayList<Card> dealerDeck = new ArrayList<>();
 	int playerDeckCount;
@@ -18,12 +18,12 @@ public class War {
 	boolean winner = false;
 	int currentPlayerCardValue;
 	int currentDealerCardValue;
-	
+
 	public War() {
 	}
-	
+
 	public void fillDecks() {
-		mainDeck.shuffle();
+		//mainDeck.shuffle();
 		for (int i = 0; i < 26; i++) {
 			playerDeck.add(mainDeck.getCard(i));
 		}
@@ -31,10 +31,10 @@ public class War {
 			dealerDeck.add(mainDeck.getCard(i));
 		}
 	}
-	
+
 	public boolean gameOver() {
 		return (playerDeck.size() == 0 || dealerDeck.size() == 0);
-	}	
+	}
 
 	public boolean cardsEqual() {
 		currentPlayerCardValue = currentPlayerCard.getCardVal();
@@ -47,7 +47,7 @@ public class War {
 		}
 		return currentPlayerCardValue == currentDealerCardValue;
 	}
-	
+
 	public String higherCardWins() {
 		if (currentPlayerCardValue > currentDealerCardValue) {
 			winner = true;
@@ -57,7 +57,7 @@ public class War {
 			return "Dealer card is higher";
 		}
 	}
-	
+
 	public void adjustCards() {
 		if (winner) {
 			playerDeck.add(playerDeck.size() -1, currentPlayerCard);
@@ -76,7 +76,7 @@ public class War {
 		currentPlayerCard = playerDeck.get(0);
 		return currentPlayerCard.getCardImage();
 	}
-	
+
 	public Image playTopDealerCard() {
 		currentDealerCard = dealerDeck.get(0);
 		return currentDealerCard.getCardImage();
