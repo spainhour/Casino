@@ -17,6 +17,10 @@ public class UsernameGUIController {
 
 	@FXML
 	TextField usernameTextField;
+	
+	public User player;
+	
+	Highscores highscores = new Highscores();
 
 	void initialize() {
 	}
@@ -26,6 +30,8 @@ public class UsernameGUIController {
 		if (usernameTextField.getText().equals("")) {
 			outputMessage(AlertType.ERROR, "Enter a username");
 		} else {
+			
+			player = new User(usernameTextField.getText(), highscores);
 			showMainMenu();
 		}
 	}
@@ -44,7 +50,7 @@ public class UsernameGUIController {
 			Scene scene = new Scene(root);
 			mainMenuStage.setScene(scene);
 			mainMenu.initialize();
-			mainMenu.setUsername(usernameTextField.getText() + "'s Casino");
+			mainMenu.setUsername(player.getUsername() + "'s Casino");
 			mainMenuStage.show();
 			usernameTextField.getScene().getWindow().hide();
 		} catch (Exception e) {
