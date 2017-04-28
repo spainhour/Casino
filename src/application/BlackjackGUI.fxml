@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="440.0" prefWidth="444.0" style="-fx-padding: 15;-fx-background-image: url('feltGreen.jpg');" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.BlackjackGUIController">
+<BorderPane prefHeight="639.0" prefWidth="444.0" style="-fx-padding: 15;-fx-background-image: url('feltGreen.jpg');" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.BlackjackGUIController">
    <top>
       <VBox>
          <children>
@@ -97,11 +97,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Pane prefHeight="35.0" prefWidth="330.0">
-                     <children>
-                        <ChoiceBox fx:id="aceValue" layoutX="238.0" layoutY="5.0" prefHeight="25.0" prefWidth="91.0" visible="false" />
-                     </children>
-                  </Pane>
+                  <Pane prefHeight="35.0" prefWidth="330.0" />
                </children>
             </HBox>
             <HBox prefHeight="43.0" prefWidth="414.0" BorderPane.alignment="CENTER">
@@ -116,9 +112,9 @@
       </VBox>
    </bottom>
    <center>
-      <VBox prefHeight="0.0" prefWidth="413.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="356.0" prefWidth="414.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox style="-fx-padding: 10;">
+            <HBox prefHeight="135.0" prefWidth="414.0" style="-fx-padding: 10;">
                <children>
                   <ImageView fx:id="dFirstCard" fitHeight="123.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -133,7 +129,7 @@
             </HBox>
             <HBox prefHeight="145.0" prefWidth="414.0" style="-fx-padding: 10;">
                <children>
-                  <HBox prefHeight="125.0" prefWidth="395.0">
+                  <HBox prefHeight="148.0" prefWidth="395.0">
                      <children>
                         <ImageView fx:id="pFirstCard" fitHeight="123.0" fitWidth="78.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -150,6 +146,15 @@
                   </HBox>
                </children>
             </HBox>
+            <Pane prefHeight="85.0" prefWidth="414.0">
+               <children>
+                  <ChoiceBox fx:id="aceValueC1" layoutX="19.0" layoutY="2.0" prefHeight="25.0" prefWidth="57.0" visible="false" />
+                  <ChoiceBox fx:id="aceValueC2" layoutX="101.0" layoutY="2.0" prefHeight="25.0" prefWidth="57.0" visible="false" />
+                  <ChoiceBox fx:id="aceValueC3" layoutX="177.0" layoutY="1.0" prefHeight="25.0" prefWidth="57.0" visible="false" />
+                  <ChoiceBox fx:id="aceValueC4" layoutX="258.0" prefHeight="25.0" prefWidth="57.0" visible="false" />
+                  <ChoiceBox fx:id="aceValueC5" layoutX="335.0" prefHeight="25.0" prefWidth="57.0" visible="false" />
+               </children>
+            </Pane>
          </children></VBox>
    </center>
 </BorderPane>

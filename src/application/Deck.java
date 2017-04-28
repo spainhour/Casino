@@ -14,9 +14,9 @@ public class Deck {
 	{
 		this.cI = Main.cardIMG;
 		refreshDeck();
-		System.out.println("Done!");
-		printCardsInDeck();
-		System.out.println("Done!");
+		//System.out.println("Done!");
+		//printCardsInDeck();
+		//System.out.println("Done!");
 	}
 
 
@@ -59,6 +59,7 @@ public class Deck {
 		return cardDeck.size();
 	}
 
+
 	public ArrayList<Card> getCardsOfSuit(int suit)
 	{
 		ArrayList<Card> cards = new ArrayList<>();
@@ -80,7 +81,7 @@ public class Deck {
 		for (Iterator<Card> cardIter = cardDeck.iterator(); cardIter.hasNext();)
 		{
 			Card cardToCheck = cardIter.next();
-			System.out.println(cardToCheck.card.ordinal());
+			//System.out.println(cardToCheck.card.ordinal());
 		}
 	}
 
@@ -109,7 +110,7 @@ public class Deck {
 		Random rnd = ThreadLocalRandom.current();
 		int index = rnd.nextInt(cardDeck.size());
 		Card removedCard = cardDeck.remove(1);
-		System.out.println("randomCard Val: " + removedCard.getCardVal());
+		//System.out.println("randomCard Val: " + removedCard.getCardVal());
 		return removedCard;
 	}
 }

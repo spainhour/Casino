@@ -21,7 +21,7 @@ public class Card {
 		//this.card = application.Card.card.values()[cardIndex];
 		cardEnum[] cardValues = cardEnum.values();
 		this.card = cardValues[cardIndex];
-		System.out.println(this.card.ordinal());
+		//System.out.println(this.card.ordinal());
 	}
 
 	public enum cardEnum
@@ -80,6 +80,8 @@ public class Card {
 		queen_of_hearts ( 12, 3),
 		queen_of_spades ( 12, 4);
 //		red_joker ( 0, 0);
+
+
 
 		private final int val;
 		private final int suit;

@@ -41,12 +41,20 @@ public class Hand
 		return total;
 	}
 
+	public int setAce11(){
+		return getTotal(true) + 10;
+	}
+
 	public boolean contains(){
 		for(int i = 0; i < myHand.size(); i++){
 			if(myHand.get(i).getCardVal() == 1){
 				return true;
 			}
 		} return false;
+	}
+
+	public int size(){
+		return myHand.size();
 	}
 
 	public String toString()

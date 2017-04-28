@@ -28,7 +28,6 @@ public class Blackjack {
 
 
 	public Blackjack(){
-		//this.cards = cards;
 	}
 
 	public void newGameAction(){
