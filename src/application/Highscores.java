@@ -6,16 +6,69 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Set;
 
-public class Highscores {
+public class Highscores implements Serializable{
 	
 	public static final String UserInfoFile = "Highscores.txt";
 	
-	HashMap<String, int[]> highscores = new HashMap<>();
+	HashMap<String, int[]> highscores = new HashMap<String, int[]>();
 	
 	public void addUser(String username) {
-		highscores.put(username, new int[]{0,0,0});
+		highscores.put(username, new int[3]);
+	}
+	
+	public HashMap<String, int[]> getHashmap() {
+		return highscores;
+	}
+	
+	public Set<String> getKeys() {
+		return highscores.keySet();
+	}
+	
+	public Collection<int[]> getValues() {
+		return highscores.values();
+	}
+	
+	public int getWarHighscore(String username) {
+		int[] userHighscores = highscores.get(username);
+		return userHighscores[0];
+	}
+	
+	public int getBlackjackHighscore(String username) {
+		int[] userHighscores = highscores.get(username);
+		return userHighscores[1];
+	}
+	
+	public int getTexasHighscore(String username) {
+		int[] userHighscores = highscores.get(username);
+		return userHighscores[2];
+	}
+	
+	public void setWarHighscore(String username, int score) {
+		int[] tempHighscoresArray = highscores.get(username);
+		tempHighscoresArray[0] = score;
+		highscores.put(username, tempHighscoresArray);
+	}
+	
+	public void setBlackjackHighscore(String username, int score) {
+		int[] tempHighscoresArray = highscores.get(username);
+		tempHighscoresArray[1] = score;
+		highscores.put(username, tempHighscoresArray);
+	}
+	
+	public void setTexasHighscore(String username, int score) {
+		int[] tempHighscoresArray = highscores.get(username);
+		tempHighscoresArray[2] = score;
+		highscores.put(username, tempHighscoresArray);
+	}
+	
+	
+	public int[] getHighscoresFor(String username) {
+		return highscores.get(username);
 	}
 	
 	public static void saveHighscores(Highscores highscores) {

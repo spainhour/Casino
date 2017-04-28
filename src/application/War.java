@@ -23,12 +23,12 @@ public class War {
 	}
 
 	public void fillDecks() {
-		//mainDeck.shuffle();
+		mainDeck.shuffle();
 		for (int i = 0; i < 26; i++) {
-			playerDeck.add(mainDeck.getCard(i));
+			playerDeck.add(mainDeck.getCard(0));
 		}
 		for (int i = 26; i < 52; i++) {
-			dealerDeck.add(mainDeck.getCard(i));
+			dealerDeck.add(mainDeck.getCard(0));
 		}
 	}
 
@@ -84,7 +84,7 @@ public class War {
 
 	public String war() {
 		int war = 0;
-		while (war != 4) {
+		while (war < 4) {
 			playTopPlayerCard();
 			playTopDealerCard();
 			System.out.print("test");

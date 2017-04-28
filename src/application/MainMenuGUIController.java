@@ -11,6 +11,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class MainMenuGUIController {
@@ -44,6 +45,9 @@ public class MainMenuGUIController {
 
 	@FXML
 	Button aboutCheat;
+	
+	@FXML
+	Button highscores;
 
 	String username = "";
 
@@ -54,7 +58,6 @@ public class MainMenuGUIController {
 		jack.setImage(jackCard);
 		Image jokerCard = new Image("PNG-cards-1.3/black_joker.png");
 		joker.setImage(jokerCard);
-
 		//Card card3 = new Card(new cardImage());
 		//king.setImage(card3.getCardImage());
 	}
@@ -83,6 +86,25 @@ public class MainMenuGUIController {
 		alert.setHeaderText("How to play: " + game);
 		alert.setResizable(true);
 		alert.showAndWait();
+	}
+	
+	@FXML
+	void highscores() {
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("HighscoresGUI.fxml"));
+			VBox root = (VBox) loader.load();
+			HighscoresGUIController Highscores = (HighscoresGUIController) loader.getController();
+			Stage highscoreStage = new Stage();
+			Scene scene = new Scene(root);
+			highscoreStage.setScene(scene);
+			Highscores.setUsername(usernameLabel.getText());
+			Highscores.initialize();
+			highscoreStage.show();
+			usernameLabel.getScene().getWindow().hide();
+		} catch (Exception e) {
+			e.printStackTrace();
+			outputMessage(AlertType.ERROR, "Could not load Highscores");
+		}
 	}
 
 	@FXML
