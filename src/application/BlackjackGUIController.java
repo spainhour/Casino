@@ -10,6 +10,7 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -25,6 +26,8 @@ import javafx.scene.control.SpinnerValueFactory.IntegerSpinnerValueFactory;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -66,33 +69,29 @@ public class BlackjackGUIController {
 	@FXML
 	Spinner bet;
 
-	@FXML
-	ChoiceBox aceValueC1;
-
-	@FXML
-	ChoiceBox aceValueC2;
-
-	@FXML
-	ChoiceBox aceValueC3;
-
-	@FXML
-	ChoiceBox aceValueC4;
-
-	@FXML
-	ChoiceBox aceValueC5;
-
-
 	Blackjack game = new Blackjack();
 	int hitNum = 1;
 
-	List<String> aceValues = new ArrayList<>(Arrays.asList("Ace Value", "1", "11"));
 
 	void initialize() throws IOException {
-		aceValueC1.getItems().removeAll(aceValues);
-		aceValueC2.getItems().removeAll(aceValues);
-		aceValueC3.getItems().removeAll(aceValues);
-		aceValueC4.getItems().removeAll(aceValues);
-		aceValueC5.getItems().removeAll(aceValues);
+		pFirstCard.setOnMousePressed(new EventHandler<MouseEvent>() {
+		    @Override
+		    public void handle(MouseEvent mouseEvent) {
+
+		    }
+		});
+		pSecondCard.setOnMousePressed(new EventHandler<MouseEvent>() {
+		    @Override
+		    public void handle(MouseEvent mouseEvent) {
+
+		    }
+		});
+		pThirdCard.setOnMousePressed(new EventHandler<MouseEvent>() {
+		    @Override
+		    public void handle(MouseEvent mouseEvent) {
+
+		    }
+		});
 		game.newGameAction();
 		game.reset();
 		game.deal();
@@ -104,20 +103,46 @@ public class BlackjackGUIController {
 		pFifthCard.setImage(null);
 		myPoints.setText(Integer.toString(game.points));
 
-		for(String value : aceValues){
-			aceValueC1.getItems().add(value);
-			aceValueC2.getItems().add(value);
-			aceValueC3.getItems().add(value);
-			aceValueC4.getItems().add(value);
-			aceValueC5.getItems().add(value);
-		}
-
 		if(game.playerHand.getCard(0).getCardVal() == 1){
-			aceValueC1.setVisible(true);
+			pFirstCard.setOnMousePressed(new EventHandler<MouseEvent>() {
+			    @Override
+			    public void handle(MouseEvent mouseEvent) {
+			        if(mouseEvent.getButton().equals(MouseButton.PRIMARY)){
+			        	if(mouseEvent.isShiftDown() && mouseEvent.getClickCount() == 1){
+			                System.out.println("shift");
+			                game.playerTotal += 10;
+			                myScore.setText(Integer.toString(game.playerTotal));
+			                System.out.println(game.playerTotal);
+			            }
+			            if(mouseEvent.getClickCount() == 2){
+			            	game.playerTotal -= 10;
+			            	 myScore.setText(Integer.toString(game.playerTotal));
+			                System.out.println(game.playerTotal);
+			            }
+			        }
+			    }
+			});
 		}
 
 		if(game.playerHand.getCard(1).getCardVal() == 1){
-			aceValueC2.setVisible(true);
+			pSecondCard.setOnMousePressed(new EventHandler<MouseEvent>() {
+			    @Override
+			    public void handle(MouseEvent mouseEvent) {
+			        if(mouseEvent.getButton().equals(MouseButton.PRIMARY)){
+			        	if(mouseEvent.isShiftDown() && mouseEvent.getClickCount() == 1){
+			                System.out.println("shift");
+			                game.playerTotal += 10;
+			                myScore.setText(Integer.toString(game.playerTotal));
+			                System.out.println(game.playerTotal);
+			            }
+			            if(mouseEvent.getClickCount() == 2){
+			            	game.playerTotal -= 10;
+			            	 myScore.setText(Integer.toString(game.playerTotal));
+			                System.out.println(game.playerTotal);
+			            }
+			        }
+			    }
+			});
 		}
 
 
@@ -148,7 +173,26 @@ public class BlackjackGUIController {
 		game.setBet((int) bet.getValue());
 		game.playerHit();
 		if(hitNum == 1){
-			//System.out.println("Hit 1 -- Hand size: " + game.playerHand.size());
+			if(game.playerHand.getCard(2).getCardVal() == 1){
+				pThirdCard.setOnMousePressed(new EventHandler<MouseEvent>() {
+				    @Override
+				    public void handle(MouseEvent mouseEvent) {
+				        if(mouseEvent.getButton().equals(MouseButton.PRIMARY)){
+				        	if(mouseEvent.isShiftDown() && mouseEvent.getClickCount() == 1){
+				                System.out.println("shift");
+				                game.playerTotal += 10;
+				                myScore.setText(Integer.toString(game.playerTotal));
+				                System.out.println(game.playerTotal);
+				            }
+				            if(mouseEvent.getClickCount() == 2){
+				            	game.playerTotal -= 10;
+				            	 myScore.setText(Integer.toString(game.playerTotal));
+				                System.out.println(game.playerTotal);
+				            }
+				        }
+				    }
+				});
+			}
 			pThirdCard.setImage(game.playerHand.getCard(2).getCardImage());
 			//System.out.println("Index: " + 2);
 		} else if(hitNum == 2){
@@ -195,11 +239,6 @@ public class BlackjackGUIController {
 		if(alert.getResult() == playAgain){
 			game.reset();
 			hitNum = 1;
-			aceValueC1.setVisible(false);
-			aceValueC2.setVisible(false);
-			aceValueC3.setVisible(false);
-			aceValueC4.setVisible(false);
-			aceValueC5.setVisible(false);
 			initialize();
 		}
 		if(alert.getResult() == exit){
