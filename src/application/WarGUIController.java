@@ -35,6 +35,7 @@ public class WarGUIController {
 	int intPlayerCardCount = 26;
 	War war = new War();
 	String winner = "";
+	Highscores highscores = new Highscores();
 
 	void initialize() {
 		setCardCounts();
@@ -67,9 +68,11 @@ public class WarGUIController {
 		}
 	}
 
+
 	private void displayWinner() {
 		if (intOpponentCardCount == 0) {
 			Alert alert = new Alert(AlertType.INFORMATION, "Player Wins!");
+			Highscores.saveHighscores(highscores);
 			alert.showAndWait();
 			leaveGame();
 		} else if (intPlayerCardCount == 0){
@@ -112,6 +115,7 @@ public class WarGUIController {
 	@FXML
 	void leaveGame() {
 		try {
+			Highscores.saveHighscores(highscores);
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenuGUI.fxml"));
 			BorderPane root = (BorderPane) loader.load();
 			MainMenuGUIController mainMenu = (MainMenuGUIController) loader.getController();

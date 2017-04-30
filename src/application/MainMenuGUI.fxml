@@ -92,6 +92,11 @@
                      </font>
                   </Label>
                   <HBox prefHeight="15.0" prefWidth="200.0" />
+                  <StackPane>
+                     <children>
+                        <Button fx:id="highscores" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#highscores" text="Highscores" />
+                     </children>
+                  </StackPane>
                </children>
             </VBox>
          </children>
