@@ -35,9 +35,11 @@ public class texasGUIController {
 	ImageView secondEnemyCard2;
 	
 	private User player;
+	private Highscores hs;
 
-	void initialize(User player) {
+	void initialize(User player, Highscores hs) {
 		this.player = player;
+		this.hs = hs;
 	}
 
 	@FXML
@@ -49,7 +51,7 @@ public class texasGUIController {
 			Stage mainMenuStage = new Stage();
 			Scene scene = new Scene(root);
 			mainMenuStage.setScene(scene);
-			mainMenu.initialize(player);
+			mainMenu.initialize(player,hs);
 			mainMenuStage.show();
 			usernameLabel.getScene().getWindow().hide();
 		} catch (Exception e) {

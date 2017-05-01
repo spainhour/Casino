@@ -18,9 +18,13 @@ public class UsernameGUIController {
 	@FXML
 	TextField usernameTextField;
 	
+	Highscores hs;
 	
-
+	
+	@FXML
 	void initialize() {
+		hs = new Highscores();
+		System.out.println(hs.getKeys());
 	}
 
 	@FXML
@@ -29,7 +33,16 @@ public class UsernameGUIController {
 			outputMessage(AlertType.ERROR, "Enter a username");
 		} else {
 			String tempUser = usernameTextField.getText();
-			showMainMenu(new User(tempUser));
+			if (hs.userExists(tempUser)) {
+				System.out.println("Made it");
+				showMainMenu(hs.getUser(tempUser),hs);
+				hs.saveHighscores();
+				System.out.println(hs.userExists(tempUser));
+			} else {
+				showMainMenu(new User(tempUser),hs);
+				hs.saveHighscores();
+				System.out.println(hs.userExists(tempUser));
+			}
 		}
 	}
 
@@ -38,12 +51,12 @@ public class UsernameGUIController {
 		alert.showAndWait();
 	}
 
-	private void showMainMenu(User player) {
+	private void showMainMenu(User player, Highscores hs) {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenuGUI.fxml"));
 			BorderPane root = (BorderPane) loader.load();
 			MainMenuGUIController mainMenu = (MainMenuGUIController) loader.getController();
-			mainMenu.initialize(player);
+			mainMenu.initialize(player, hs);
 			Stage mainMenuStage = new Stage();
 			Scene scene = new Scene(root);
 			mainMenuStage.setScene(scene);

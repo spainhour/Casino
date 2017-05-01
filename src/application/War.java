@@ -17,6 +17,7 @@ public class War {
 	public Card currentPlayerCard;
 	public Card currentDealerCard;
 	private User player;
+	private User dealer;
 	private Highscores hs;
 	private WarGUIController warGUI;
 	
@@ -73,6 +74,7 @@ public class War {
 		if (dealerDeck.size() == 0) {
 			Alert alert = new Alert(AlertType.INFORMATION, "Player Wins!");
 			player.setWarHighscore(1);
+			System.out.print(player.getWarHighscore());
 			hs.saveHighscores();
 			alert.showAndWait();
 			warGUI.leaveGame();

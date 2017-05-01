@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -20,6 +19,14 @@ public class Highscores implements Serializable{
 	public static final String UserInfoFile = "Highscores.txt";
 	
 	HashMap<String, User> highscores; 
+	
+	public Highscores(){
+		this.highscores = loadHighscores();
+	}
+	
+	public Highscores(boolean newHashMap){
+		this.highscores = new HashMap<String, User>();
+	}
 	
 	public void addUser(User user) {
 		highscores.put(user.getUsername(),user);
@@ -36,6 +43,10 @@ public class Highscores implements Serializable{
 	public Collection<int[]> getValues() {
 		return highscores.values();
 	}*/
+	
+	public boolean userExists(String username){
+		return this.highscores.containsKey(username);
+	}
 	
 	public User getUser(String username){
 		return this.highscores.get(username);
@@ -54,7 +65,7 @@ public class Highscores implements Serializable{
 		}
 	}
 	
-	public static HashMap<String, User> loadHighscores() {
+	public HashMap<String, User> loadHighscores() {
 		if (fileExists()) {
 			FileInputStream fis = null;
 			try {
@@ -67,13 +78,11 @@ public class Highscores implements Serializable{
 				e.printStackTrace();
 			}
 		}			
-		Highscores tempHighscores = new Highscores();
+		Highscores tempHighscores = new Highscores(true);
 		return tempHighscores.getHashmap();
 	}
 	
-	public Highscores(){
-		this.highscores = loadHighscores();
-	}
+
 	
 	public static boolean fileExists() {
 		return new File(UserInfoFile).isFile();

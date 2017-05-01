@@ -74,7 +74,6 @@ public class Blackjack {
 		playerHand.add(aDeck.getRandomCard());
 		dealerHand.add(aDeck.getRandomCard());
 		playerTotal = playerHand.getTotal(true);
-
 	}
 
 

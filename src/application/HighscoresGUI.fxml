@@ -13,7 +13,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" prefHeight="26.0" prefWidth="600.0" text="Highscore List" textAlignment="CENTER" textFill="WHITE">
+      <Label fx:id="usernameLabel1" alignment="CENTER" prefHeight="26.0" prefWidth="600.0" text="Highscore List" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
@@ -26,10 +26,7 @@
             <Button fx:id="back" mnemonicParsing="false" onAction="#back" prefWidth="70.0" text="Back" BorderPane.alignment="CENTER" />
          </bottom>
          <center>
-            <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-               <children>
-                  <ListView fx:id="highscoreList" prefHeight="316.0" prefWidth="581.0" />
-               </children></HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
          </center>
       </BorderPane>
    </children>

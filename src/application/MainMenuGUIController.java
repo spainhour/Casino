@@ -50,10 +50,12 @@ public class MainMenuGUIController {
 	Button highscores;
 
 	private User player;
-	private Highscores hs = new Highscores();
+	private Highscores hs;
 	
-	public void initialize(User player) {
+	public void initialize(User player, Highscores hs) {
 		this.player = player;
+		this.hs = hs;
+		hs.saveHighscores();
 		System.out.println(player.getCasino());
 		this.usernameLabel.setText(player.getCasino());
 		Image kingCard  = new Image("PNG-cards-1.3/king_of_hearts2.png");
@@ -153,7 +155,7 @@ public class MainMenuGUIController {
 			Stage blackjackStage = new Stage();
 			Scene scene = new Scene(root);
 			blackjackStage.setScene(scene);
-			Blackjack.initialize(this.player);
+			Blackjack.initialize(this.player,hs);
 			Blackjack.setUsername(usernameLabel.getText());
 			blackjackStage.show();
 			usernameLabel.getScene().getWindow().hide();
@@ -172,7 +174,7 @@ public class MainMenuGUIController {
 			Stage texasStage = new Stage();
 			Scene scene = new Scene(root);
 			texasStage.setScene(scene);
-			Texas.initialize(player);
+			Texas.initialize(player,hs);
 			texasStage.show();
 			usernameLabel.getScene().getWindow().hide();
 		} catch (Exception e) {

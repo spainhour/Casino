@@ -37,13 +37,13 @@ public class HighscoresGUIController {
 	@FXML
 	ChoiceBox<String> cb;
 
-	Highscores highscores;
+	private Highscores hs;
 
 	private User player;
 	
 	void initialize(User player, Highscores hs) {
 		this.player = player;
-		this.highscores = hs;
+		this.hs = hs;
 		cb.getItems().addAll("Choose a game", "War", "Blackjack", "Texas Hold 'Em");
 		cb.getSelectionModel().select(0);
 		cb.getSelectionModel().selectedItemProperty()
@@ -54,22 +54,22 @@ public class HighscoresGUIController {
 	private void displayHighscores() {
 		if (cb.getValue().equals("War")) {
 			System.out.println("It worked");
-			for (String username : highscores.getKeys()) {
-				System.out.println(highscores.getUser(username).getWarHighscore());
-				users.add(highscores.getUser(username).getWarHighscore());
+			for (String username : hs.getKeys()) {
+				System.out.println(hs.getUser(username).getWarHighscore());
+				users.add(hs.getUser(username).getWarHighscore());
 			}
 		}
 		if (cb.getValue().equals("Blackjack")) {
-			for (String username : highscores.getKeys()) {
-				users.add(highscores.getUser(username).getBlackjackHighscore());
+			for (String username : hs.getKeys()) {
+				users.add(hs.getUser(username).getBlackjackHighscore());
 			}
 		}
 		if (cb.getValue().equals("Texas Hold 'Em")) {
-			for (String username : highscores.getKeys()) {
-				users.add(highscores.getUser(username).getTexasHighscore());
+			for (String username : hs.getKeys()) {
+				users.add(hs.getUser(username).getTexasHighscore());
 			}
 		}
-		highscoreList.setItems(users);
+	//	highscoreList.setItems(users);
 	}
 
 	@FXML
@@ -81,7 +81,7 @@ public class HighscoresGUIController {
 			Stage mainMenuStage = new Stage();
 			Scene scene = new Scene(root);
 			mainMenuStage.setScene(scene);
-			mainMenu.initialize(player);
+			mainMenu.initialize(player,hs);
 			mainMenuStage.show();
 			usernameLabel.getScene().getWindow().hide();
 		} catch (Exception e) {
