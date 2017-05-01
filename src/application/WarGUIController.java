@@ -43,7 +43,6 @@ public class WarGUIController {
 		this.player=player;
 		this.hs = hs;
 		this.war = new War(player, hs, this);
-		setCardCounts();
 	}
 	
 
@@ -57,7 +56,6 @@ public class WarGUIController {
 		} else {
 			outputMessages.setText("Dealer card is higher");
 		}
-		setCardCounts();
 		
 	}
 	
@@ -80,12 +78,27 @@ public class WarGUIController {
 		System.out.println(message);
 		outputMessages.setText(message);
 	}
-
-	public void setCardCounts() {
-		String playerCards = Integer.toString(war.getPlayerCardCount());
-		String dealerCards = Integer.toString(war.getDealerCardCount());
-		myCardCount.setText(playerCards);
-		opponentCardCount.setText(dealerCards);
+	
+	@SuppressWarnings("restriction")
+	public void setPlayerCardCount(int count)
+	{
+		
+		Platform.runLater(new Runnable() {
+		    public void run() {
+		    	myCardCount.setText(Integer.toString(count));
+		    }
+		});
+	}
+	
+	@SuppressWarnings("restriction")
+	public void setDealerCardCount(int count)
+	{
+		Platform.runLater(new Runnable() {
+		    public void run() {
+		    	opponentCardCount.setText(Integer.toString(count));
+		    }
+		});
+		
 	}
 	
 	public void leaveGameWrapper(){

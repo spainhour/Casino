@@ -85,11 +85,21 @@ public class War {
 	}
 
 	public Card playTopPlayerCard() {
+		if(this.getPlayerCardCount()>0)
+		{
+		warGUI.setPlayerCardCount(playerDeck.size());
 		return playerDeck.getCard(0);
+		}
+		return this.currentPlayerCard;
 	}
 
 	public Card playTopDealerCard() {
-		return dealerDeck.getCard(0);
+		if(this.getDealerCardCount()>0)
+		{
+			warGUI.setDealerCardCount(dealerDeck.size());
+			return dealerDeck.getCard(0);
+		}
+			return this.currentDealerCard;
 	}
 
 	public boolean war() {
@@ -99,7 +109,8 @@ public class War {
 		playerWarCards.add(currentPlayerCard);
 		dealerWarCards.add(currentDealerCard);
 		while (war < 3) {
-			
+			if(getPlayerCardCount()==0){return false; }
+			if(getDealerCardCount()==0){return true; }
 			playerWarCards.add(playTopPlayerCard());
 			dealerWarCards.add(playTopDealerCard());
 			
@@ -132,7 +143,8 @@ public class War {
 			return playerDeck.size(); 
 		}
 	}
-	public int getDealerCardCount(){ 
+	public int getDealerCardCount()
+	{
 		if (gameOver()) 
 		{
 			displayWinner();

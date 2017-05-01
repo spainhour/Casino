@@ -26,7 +26,7 @@ public class MainMenuGUIController {
 	Button playBlackjack;
 
 	@FXML
-	Button playCheat;
+	Button playTexas;
 
 	@FXML
 	ImageView king;
@@ -164,16 +164,16 @@ public class MainMenuGUIController {
 	}
 
 	@FXML
-	void playCheat() {
+	void playTexas() {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("CheatGUI.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("texasGUI.fxml"));
 			AnchorPane root = (AnchorPane) loader.load();
-			CheatGUIController Cheat = (CheatGUIController) loader.getController();
-			Stage cheatStage = new Stage();
+			texasGUIController Texas = (texasGUIController) loader.getController();
+			Stage texasStage = new Stage();
 			Scene scene = new Scene(root);
-			cheatStage.setScene(scene);
-			Cheat.initialize();
-			cheatStage.show();
+			texasStage.setScene(scene);
+			Texas.initialize(player);
+			texasStage.show();
 			usernameLabel.getScene().getWindow().hide();
 		} catch (Exception e) {
 			e.printStackTrace();
