@@ -40,6 +40,9 @@ public class texasGUIController {
 	void initialize(User player, Highscores hs) {
 		this.player = player;
 		this.hs = hs;
+		Deck mainDeck = new Deck();
+		usernameLabel.setText(player.getUsername());
+		
 	}
 
 	@FXML
