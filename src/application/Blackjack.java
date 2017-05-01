@@ -44,7 +44,6 @@ public class Blackjack {
 
 	public void reset()
 	{
-		//aDeck = new Deck(Main.cardIMG);
 		dealerHand = new Hand();
 		playerHand = new Hand();
 		playerBusted = false;

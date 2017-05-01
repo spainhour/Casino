@@ -200,15 +200,10 @@ public class BlackjackGUIController {
 				});
 			}
 			pThirdCard.setImage(game.playerHand.getCard(2).getCardImage());
-			//System.out.println("Index: " + 2);
 		} else if(hitNum == 2){
-			//System.out.println("Hit 2 -- Hand size: " + game.playerHand.size());
 			pFourthCard.setImage(game.playerHand.getCard(3).getCardImage());
-			//System.out.println("Index: " + 3);
 		} else if(hitNum == 3){
-			//System.out.println("Hit 3 -- Hand size: " + game.playerHand.size());
 			pFifthCard.setImage(game.playerHand.getCard(4).getCardImage());
-			//System.out.println("Index: " + 4);
 		}
 
 		setScores();
