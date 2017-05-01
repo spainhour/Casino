@@ -46,6 +46,9 @@ public class BlackjackGUIController {
 	ImageView dSecondCard;
 
 	@FXML
+	ImageView dThirdCard;
+
+	@FXML
 	ImageView pSecondCard;
 
 	@FXML
@@ -101,6 +104,7 @@ public class BlackjackGUIController {
 		pThirdCard.setImage(null);
 		pFourthCard.setImage(null);
 		pFifthCard.setImage(null);
+		dThirdCard.setImage(null);
 		myPoints.setText(Integer.toString(game.points));
 
 		if(game.playerHand.getCard(0).getCardVal() == 1){
@@ -110,12 +114,12 @@ public class BlackjackGUIController {
 			        if(mouseEvent.getButton().equals(MouseButton.PRIMARY)){
 			        	if(mouseEvent.isShiftDown() && mouseEvent.getClickCount() == 1){
 			                System.out.println("shift");
-			                game.playerTotal += 10;
+			                game.playerTotal -= 10;
 			                myScore.setText(Integer.toString(game.playerTotal));
 			                System.out.println(game.playerTotal);
 			            }
 			            if(mouseEvent.getClickCount() == 2){
-			            	game.playerTotal -= 10;
+			            	game.playerTotal += 10;
 			            	 myScore.setText(Integer.toString(game.playerTotal));
 			                System.out.println(game.playerTotal);
 			            }
@@ -131,12 +135,12 @@ public class BlackjackGUIController {
 			        if(mouseEvent.getButton().equals(MouseButton.PRIMARY)){
 			        	if(mouseEvent.isShiftDown() && mouseEvent.getClickCount() == 1){
 			                System.out.println("shift");
-			                game.playerTotal += 10;
+			                game.playerTotal -= 10;
 			                myScore.setText(Integer.toString(game.playerTotal));
 			                System.out.println(game.playerTotal);
 			            }
 			            if(mouseEvent.getClickCount() == 2){
-			            	game.playerTotal -= 10;
+			            	game.playerTotal += 10;
 			            	 myScore.setText(Integer.toString(game.playerTotal));
 			                System.out.println(game.playerTotal);
 			            }
@@ -146,7 +150,7 @@ public class BlackjackGUIController {
 		}
 
 
-		IntegerSpinnerValueFactory valueFactory = //
+		IntegerSpinnerValueFactory valueFactory =
 	                new IntegerSpinnerValueFactory.IntegerSpinnerValueFactory(0, 1000, 10, 10);
 		 bet.setValueFactory(valueFactory);
 
@@ -206,7 +210,7 @@ public class BlackjackGUIController {
 		}
 
 		setScores();
-
+		game.dealersTurn();
 		hitNum += 1;
 		checkWin();
 

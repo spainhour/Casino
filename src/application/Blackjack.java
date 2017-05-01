@@ -33,6 +33,7 @@ public class Blackjack {
 	public void newGameAction(){
 		reset();
 		gameOver = true;
+		aDeck = new Deck();
 		aDeck.shuffle();
 	}
 
@@ -86,16 +87,17 @@ public class Blackjack {
 			playerBusted = true;
 			gameOver = true;
 		}
-		playerTotal  = playerHand.getTotal(true);
+		playerTotal  = playerTotal + playerHand.getCard(playerHand.size()-1).getCardVal();
 	}
 
 	public void dealersTurn()
 	{
-		if(!playerBusted)
-			while(dealerHand.getTotal(true)<= 16)
-				dealerHand.add(aDeck.getRandomCard());
-		if(dealerHand.getTotal(true)>21)
+		if(!playerBusted && dealerHand.getTotal(true) <= 16){
+			dealerHand.add(aDeck.getRandomCard());
+		}
+		if(dealerHand.getTotal(true)>21){
 			dealerBusted = true;
+		}
 		dealerTotal = dealerHand.getTotal(true);
 	}
 
