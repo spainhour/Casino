@@ -2,33 +2,43 @@ package application;
 
 import java.util.ArrayList;
 
+import javafx.application.Platform;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 
 
 public class War {
 
 	Deck mainDeck = new Deck();
-	ArrayList<Card> playerDeck = new ArrayList<>();
-	ArrayList<Card> dealerDeck = new ArrayList<>();
-	int playerDeckCount;
-	int dealerDeckCount;
-	Card currentPlayerCard;
-	Card currentDealerCard;
-	WarGUIController warGUI;
+	Deck playerDeck = new Deck(true);
+	Deck dealerDeck = new Deck(true);
 	boolean winner = false;
-	int currentPlayerCardValue;
-	int currentDealerCardValue;
-
-	public War() {
+	public Card currentPlayerCard;
+	public Card currentDealerCard;
+	private User player;
+	private Highscores hs;
+	private WarGUIController warGUI;
+	
+	public War(User player, Highscores hs, WarGUIController wr) {
+		this.player=player;
+		this.hs = hs;
+		this.warGUI = wr;
+		fillDecks();
+		currentPlayerCard = playTopPlayerCard();
+		currentDealerCard = playTopDealerCard();
 	}
 
+	public javafx.scene.image.Image getCurrentPlayerCardImage() { return this.currentPlayerCard.getCardImage(); }
+	public javafx.scene.image.Image getCurrentDealerCardImage() { return this.currentDealerCard.getCardImage(); }
+	
 	public void fillDecks() {
 		mainDeck.shuffle();
-		for (int i = 0; i < 26; i++) {
-			playerDeck.add(mainDeck.getCard(0));
+		for (int i = 0; i < 8; i++) {
+			playerDeck.putCardBack(mainDeck.getCard(0));
 		}
-		for (int i = 26; i < 52; i++) {
-			dealerDeck.add(mainDeck.getCard(0));
+		for (int i = 0; i < 8; i++) {
+			dealerDeck.putCardBack(mainDeck.getCard(0));
 		}
 	}
 
@@ -36,61 +46,98 @@ public class War {
 		return (playerDeck.size() == 0 || dealerDeck.size() == 0);
 	}
 
-	public boolean cardsEqual() {
-		currentPlayerCardValue = currentPlayerCard.getCardVal();
-		currentDealerCardValue = currentDealerCard.getCardVal();
-		if (currentPlayerCardValue == 1) {
-			currentPlayerCardValue = 15;
-		}
-		if (currentDealerCardValue == 1) {
-			currentDealerCardValue = 15;
-		}
-		return currentPlayerCardValue == currentDealerCardValue;
-	}
+	//Ace is glitch
+	public boolean cardsEqual() { return currentPlayerCard.getCardVal() == currentDealerCard.getCardVal(); }
 
-	public String higherCardWins() {
-		if (currentPlayerCardValue > currentDealerCardValue) {
+	public boolean higherCardWins() {
+		if(cardsEqual()){
+			return war();
+		} else if (currentPlayerCard.getCardVal() > currentDealerCard.getCardVal()) {
 			winner = true;
-			return "Player card is higher";
+			playerDeck.putCardBack(currentDealerCard);//player gets both cards
+			playerDeck.putCardBack(currentPlayerCard);
+			currentPlayerCard = playTopPlayerCard();
+			currentDealerCard = playTopDealerCard();
+			return true;
 		} else {
 			winner = false;
-			return "Dealer card is higher";
+			dealerDeck.putCardBack(currentDealerCard);//dealer gets both cards
+			dealerDeck.putCardBack(currentPlayerCard);
+			currentPlayerCard = playTopPlayerCard();
+			currentDealerCard = playTopDealerCard();
+			return false;
+		}
+	}
+	
+	public void displayWinner() {
+		if (dealerDeck.size() == 0) {
+			Alert alert = new Alert(AlertType.INFORMATION, "Player Wins!");
+			player.setWarHighscore(1);
+			hs.saveHighscores();
+			alert.showAndWait();
+			warGUI.leaveGame();
+			
+		} else if (playerDeck.size() == 0){
+			Alert alert = new Alert(AlertType.INFORMATION, "Dealer Wins!");
+			alert.showAndWait();
+			warGUI.leaveGame();
 		}
 	}
 
-	public void adjustCards() {
-		if (winner) {
-			playerDeck.add(playerDeck.size() -1, currentPlayerCard);
-			playerDeck.add(playerDeck.size() -1, currentDealerCard);
-		} else {
-			dealerDeck.add(dealerDeck.size() -1, currentDealerCard);
-			dealerDeck.add(dealerDeck.size() -1, currentPlayerCard);
-		}
-		playerDeck.remove(currentPlayerCard);
-		dealerDeck.remove(currentDealerCard);
-		System.out.println(playerDeck.size());
-		System.out.println(dealerDeck.size());
+	public Card playTopPlayerCard() {
+		return playerDeck.getCard(0);
 	}
 
-	public Image playTopPlayerCard() {
-		currentPlayerCard = playerDeck.get(0);
-		return currentPlayerCard.getCardImage();
+	public Card playTopDealerCard() {
+		return dealerDeck.getCard(0);
 	}
 
-	public Image playTopDealerCard() {
-		currentDealerCard = dealerDeck.get(0);
-		return currentDealerCard.getCardImage();
-	}
-
-	public String war() {
+	public boolean war() {
 		int war = 0;
-		while (war < 4) {
-			playTopPlayerCard();
-			playTopDealerCard();
-			System.out.print("test");
+		ArrayList<Card> playerWarCards = new ArrayList<Card>();
+		ArrayList<Card> dealerWarCards = new ArrayList<Card>();
+		playerWarCards.add(currentPlayerCard);
+		dealerWarCards.add(currentDealerCard);
+		while (war < 3) {
+			
+			playerWarCards.add(playTopPlayerCard());
+			dealerWarCards.add(playTopDealerCard());
+			
+			//System.out.print("test ");
 			war++;
 		}
-		return higherCardWins();
+		currentPlayerCard = playTopPlayerCard();
+		currentDealerCard = playTopDealerCard();
+		
+		if (higherCardWins()){//player wins
+			for (Card c : playerWarCards){ playerDeck.putCardBack(c); }
+			for (Card c : dealerWarCards){ playerDeck.putCardBack(c); }
+			return true;
+		}else{//dealer wins
+			for (Card c : playerWarCards){ dealerDeck.putCardBack(c); }
+			for (Card c : dealerWarCards){ dealerDeck.putCardBack(c); }
+			return false;
+		}
+		
+		
 	}
 
+	public int getPlayerCardCount()
+	{ 
+		if (gameOver()) 
+		{
+			displayWinner();
+			return 0;
+		}else{
+			return playerDeck.size(); 
+		}
+	}
+	public int getDealerCardCount(){ 
+		if (gameOver()) 
+		{
+			displayWinner();
+			return 0;
+		}else{
+			return dealerDeck.size(); 
+	} }
 }

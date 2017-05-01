@@ -49,9 +49,13 @@ public class MainMenuGUIController {
 	@FXML
 	Button highscores;
 
-	String username = "";
-
-	public void initialize() {
+	private User player;
+	private Highscores hs = new Highscores();
+	
+	public void initialize(User player) {
+		this.player = player;
+		System.out.println(player.getCasino());
+		this.usernameLabel.setText(player.getCasino());
 		Image kingCard  = new Image("PNG-cards-1.3/king_of_hearts2.png");
 		king.setImage(kingCard);
 		Image jackCard = new Image("PNG-cards-1.3/jack_of_spades2.png");
@@ -64,15 +68,7 @@ public class MainMenuGUIController {
 
 	@FXML
 	private void aboutWar() {
-		createAboutAlert(AlertType.INFORMATION, "War", "The deck is divided evenly among the players, /"
-				+ "giving each a down stack. In unison, each player reveals the top card of their deck /"
-				+ "– this is a battle – and the player with the higher card takes both of the cards /"
-				+ "played and moves them to their stack. Aces are high, and suits are ignored. If the two /"
-				+ "cards played are of equal value, then there is a war. Both players place the next 3 cards /"
-				+ "from their pile face down, and then another card face-up. The owner of the higher face-up /"
-				+ "card wins the war and adds all eight cards on the table to the bottom of their deck. If the /"
-				+ "face-up cards are again equal then the battle repeats with another set of face-down/up cards. /"
-				+ "This repeats until one player's face-up card is higher than their opponent's.");
+		createAboutAlert(AlertType.INFORMATION, "War", "Each player begins with the same number of cards. At the start of each turn, both players play the top card of their deck face-up on the table. Whoever has the higher card, wins the round and takes both cards. If the card values are the same, there is a War. Each player will play the top three cards from their deck face down, and the fourth card face-up. Whoever has the higher card wins the round and takes all of the cards. Continue until one player has the entire deck. That player wins.");
 	}
 
 	@FXML
@@ -103,10 +99,6 @@ public class MainMenuGUIController {
 				+ " called, you pick up the pile and play continues.");
 	}
 
-	public void setUsername(String username) {
-		usernameLabel.setText(username);
-	}
-
 	public void createAboutAlert(AlertType alertType, String game, String message) {
 		Alert alert = new Alert(alertType, message);
 		alert.setHeaderText("How to play: " + game);
@@ -124,7 +116,7 @@ public class MainMenuGUIController {
 			Scene scene = new Scene(root);
 			highscoreStage.setScene(scene);
 			Highscores.setUsername(usernameLabel.getText());
-			Highscores.initialize();
+			Highscores.initialize(this.player, hs);
 			highscoreStage.show();
 			usernameLabel.getScene().getWindow().hide();
 		} catch (Exception e) {
@@ -142,8 +134,7 @@ public class MainMenuGUIController {
 			Stage warStage = new Stage();
 			Scene scene = new Scene(root);
 			warStage.setScene(scene);
-			War.setUsername(usernameLabel.getText());
-			War.initialize();
+			War.initialize(this.player,hs);
 			warStage.show();
 			usernameLabel.getScene().getWindow().hide();
 		} catch (Exception e) {
@@ -162,7 +153,7 @@ public class MainMenuGUIController {
 			Stage blackjackStage = new Stage();
 			Scene scene = new Scene(root);
 			blackjackStage.setScene(scene);
-			Blackjack.initialize();
+			Blackjack.initialize(this.player);
 			Blackjack.setUsername(usernameLabel.getText());
 			blackjackStage.show();
 			usernameLabel.getScene().getWindow().hide();
@@ -181,7 +172,6 @@ public class MainMenuGUIController {
 			Stage cheatStage = new Stage();
 			Scene scene = new Scene(root);
 			cheatStage.setScene(scene);
-			Cheat.setUsername(usernameLabel.getText());
 			Cheat.initialize();
 			cheatStage.show();
 			usernameLabel.getScene().getWindow().hide();

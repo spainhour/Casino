@@ -1,5 +1,6 @@
 package application;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -18,6 +19,8 @@ public class WarGUIController {
 	@FXML
 	Button playCard;
 	@FXML
+	Button playToEnd;
+	@FXML
 	Label usernameLabel;
 	@FXML
 	Label opponentCardCount;
@@ -29,67 +32,48 @@ public class WarGUIController {
 	ImageView dealerCard;
 	@FXML
 	ImageView playerCard;
+	
+	private User player;
+	private Highscores hs;
+	private War war;
 
-
-	int intOpponentCardCount = 26;
-	int intPlayerCardCount = 26;
-	War war = new War();
-	String winner = "";
-	Highscores highscores = new Highscores();
-
-	void initialize() {
+	
+	void initialize(User player, Highscores hs) {
+		usernameLabel.setText(player.getCasino());
+		this.player=player;
+		this.hs = hs;
+		this.war = new War(player, hs, this);
 		setCardCounts();
-		war.fillDecks();
 	}
+	
 
 	@FXML
-	void playCard() throws InterruptedException {
-		playerCard.setImage(war.playTopPlayerCard());
-		dealerCard.setImage(war.playTopDealerCard());
-		if (!war.cardsEqual()) {
-			winner = war.higherCardWins();
-			war.adjustCards();
-			adjustCardCounts();
-			setCardCounts();
-			outputMessages.setText(winner);
+	void playCard() {
+		playerCard.setImage(this.war.currentPlayerCard.getCardImage());
+		dealerCard.setImage(this.war.currentDealerCard.getCardImage());
+		
+		if (war.higherCardWins()) {
+			outputMessages.setText("Player card is higher");
 		} else {
-			outputMessages.setText("War!");
-			winner = war.war();
-			war.adjustCards();
-			adjustCardCounts();
-			adjustCardCounts();
-			adjustCardCounts();
-			adjustCardCounts();
-			setCardCounts();
-			outputMessages.setText(winner);
+			outputMessages.setText("Dealer card is higher");
 		}
-		if (gameOver()) {
-			displayWinner();
-		}
+		setCardCounts();
+		
 	}
-
-
-	private void displayWinner() {
-		if (intOpponentCardCount == 0) {
-			Alert alert = new Alert(AlertType.INFORMATION, "Player Wins!");
-			Highscores.saveHighscores(highscores);
-			alert.showAndWait();
-			leaveGame();
-		} else if (intPlayerCardCount == 0){
-			Alert alert = new Alert(AlertType.INFORMATION, "Dealer Wins!");
-			alert.showAndWait();
-			leaveGame();
+	
+	@FXML
+	void playToEnd() throws Exception {
+		while(!war.gameOver())
+		{
+			Platform.runLater(new Runnable() {
+			    public void run() {
+			    	playCard();
+			    }
+			});
+			
+			Thread.sleep(250);
 		}
-	}
-
-	private void adjustCardCounts() {
-		if (winner.equals("Player card is higher")) {
-			intPlayerCardCount += 1;
-			intOpponentCardCount -= 1;
-		} else if (winner.equals("Dealer card is higher")) {
-			intOpponentCardCount += 1;
-			intPlayerCardCount -= 1;
-		}
+		
 	}
 
 	public void setOutputMessagesLabel(String message) {
@@ -98,32 +82,31 @@ public class WarGUIController {
 	}
 
 	public void setCardCounts() {
-		String myCards = Integer.toString(intPlayerCardCount);
-		String opponentCards = Integer.toString(intOpponentCardCount);
-		myCardCount.setText(myCards);
-		opponentCardCount.setText(opponentCards);
+		String playerCards = Integer.toString(war.getPlayerCardCount());
+		String dealerCards = Integer.toString(war.getDealerCardCount());
+		myCardCount.setText(playerCards);
+		opponentCardCount.setText(dealerCards);
 	}
-
-	public void setUsername(String username) {
-		usernameLabel.setText(username);
-	}
-
-	private boolean gameOver() {
-		return (intPlayerCardCount == 0 || intOpponentCardCount == 0);
+	
+	public void leaveGameWrapper(){
+		Platform.runLater(new Runnable() {
+		    public void run() {
+		    	leaveGame();
+		    }
+		});
 	}
 
 	@FXML
 	void leaveGame() {
 		try {
-			Highscores.saveHighscores(highscores);
+			hs.saveHighscores();
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenuGUI.fxml"));
 			BorderPane root = (BorderPane) loader.load();
 			MainMenuGUIController mainMenu = (MainMenuGUIController) loader.getController();
 			Stage mainMenuStage = new Stage();
 			Scene scene = new Scene(root);
 			mainMenuStage.setScene(scene);
-			mainMenu.setUsername(usernameLabel.getText());
-			mainMenu.initialize();
+			mainMenu.initialize(player);
 			mainMenuStage.show();
 			usernameLabel.getScene().getWindow().hide();
 		} catch (Exception e) {

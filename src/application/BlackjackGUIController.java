@@ -74,9 +74,11 @@ public class BlackjackGUIController {
 
 	Blackjack game = new Blackjack();
 	int hitNum = 1;
+	private User player;
 
-
-	void initialize() throws IOException {
+	void initialize(User player) throws IOException {
+		this.player = player;
+		usernameLabel.setText(player.getUsername());
 		pFirstCard.setOnMousePressed(new EventHandler<MouseEvent>() {
 		    @Override
 		    public void handle(MouseEvent mouseEvent) {
@@ -236,14 +238,14 @@ public class BlackjackGUIController {
 	}
 
 	void winner(String whoWon) throws IOException{
-		ButtonType playAgain = new ButtonType("Play again?");
-		ButtonType exit = new ButtonType("Exit to lobby?");
+		ButtonType playAgain = new ButtonType("Play Again");
+		ButtonType exit = new ButtonType("Exit To Lobby");
 		Alert alert = new Alert(AlertType.NONE, whoWon, playAgain, exit);
 		alert.showAndWait();
 		if(alert.getResult() == playAgain){
 			game.reset();
 			hitNum = 1;
-			initialize();
+			initialize(player);
 		}
 		if(alert.getResult() == exit){
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenuGUI.fxml"));
@@ -252,8 +254,7 @@ public class BlackjackGUIController {
 			Stage mainMenuStage = new Stage();
 			Scene scene = new Scene(root);
 			mainMenuStage.setScene(scene);
-			mainMenu.initialize();
-			mainMenu.setUsername(usernameLabel.getText());
+			mainMenu.initialize(player);
 			mainMenuStage.show();
 			usernameLabel.getScene().getWindow().hide();
 		}
@@ -269,8 +270,7 @@ public class BlackjackGUIController {
 			Stage mainMenuStage = new Stage();
 			Scene scene = new Scene(root);
 			mainMenuStage.setScene(scene);
-			mainMenu.initialize();
-			mainMenu.setUsername(usernameLabel.getText());
+			mainMenu.initialize(this.player);
 			mainMenuStage.show();
 			usernameLabel.getScene().getWindow().hide();
 		} catch (Exception e) {

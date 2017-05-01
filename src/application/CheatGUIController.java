@@ -33,7 +33,8 @@ public class CheatGUIController {
 
 	@FXML
 	ImageView sixthCard;
-
+	
+	private User player;
 
 	void initialize() {
 		Image card = new Image("PNG-cards-1.3/10_of_clubs.png");
@@ -64,8 +65,7 @@ public class CheatGUIController {
 			Stage mainMenuStage = new Stage();
 			Scene scene = new Scene(root);
 			mainMenuStage.setScene(scene);
-			mainMenu.initialize();
-			mainMenu.setUsername(usernameLabel.getText());
+			mainMenu.initialize(player);
 			mainMenuStage.show();
 			usernameLabel.getScene().getWindow().hide();
 		} catch (Exception e) {

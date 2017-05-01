@@ -1,11 +1,19 @@
 package application;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.event.ChangeListener;
+
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.Separator;
 import javafx.scene.control.Tab;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -22,14 +30,48 @@ public class HighscoresGUIController {
 	Button back;
 	
 	@FXML
-	ChoiceBox<String> choiceBox = new ChoiceBox<String>(FXCollections.observableArrayList("War", "Blackjack", "Texas Hold 'Em"));
+	ListView<Integer> highscoreList;
 	
+	ObservableList<Integer> users;
+	
+	@FXML
+	ChoiceBox<String> cb;
+
 	Highscores highscores;
+
+	private User player;
 	
-	void initialize() {
-		highscores = Highscores.loadHighscores();
+	void initialize(User player, Highscores hs) {
+		this.player = player;
+		this.highscores = hs;
+		cb.getItems().addAll("Choose a game", "War", "Blackjack", "Texas Hold 'Em");
+		cb.getSelectionModel().select(0);
+		cb.getSelectionModel().selectedItemProperty()
+		.addListener((obs, oldV, newV) ->
+		displayHighscores());	
 	}
 	
+	private void displayHighscores() {
+		if (cb.getValue().equals("War")) {
+			System.out.println("It worked");
+			for (String username : highscores.getKeys()) {
+				System.out.println(highscores.getUser(username).getWarHighscore());
+				users.add(highscores.getUser(username).getWarHighscore());
+			}
+		}
+		if (cb.getValue().equals("Blackjack")) {
+			for (String username : highscores.getKeys()) {
+				users.add(highscores.getUser(username).getBlackjackHighscore());
+			}
+		}
+		if (cb.getValue().equals("Texas Hold 'Em")) {
+			for (String username : highscores.getKeys()) {
+				users.add(highscores.getUser(username).getTexasHighscore());
+			}
+		}
+		highscoreList.setItems(users);
+	}
+
 	@FXML
 	void back() {
 		try {
@@ -39,8 +81,7 @@ public class HighscoresGUIController {
 			Stage mainMenuStage = new Stage();
 			Scene scene = new Scene(root);
 			mainMenuStage.setScene(scene);
-			mainMenu.setUsername(usernameLabel.getText());
-			mainMenu.initialize();
+			mainMenu.initialize(player);
 			mainMenuStage.show();
 			usernameLabel.getScene().getWindow().hide();
 		} catch (Exception e) {

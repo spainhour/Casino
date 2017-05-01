@@ -14,9 +14,11 @@ public class Deck {
 	{
 		this.cI = Main.cardIMG;
 		refreshDeck();
-		//System.out.println("Done!");
-		//printCardsInDeck();
-		//System.out.println("Done!");
+	}
+	
+	public Deck(boolean isEmpty)
+	{
+		this.cI = Main.cardIMG;
 	}
 
 
@@ -31,6 +33,11 @@ public class Deck {
 	      cardDeck.set(index,cardDeck.get(i));
 	      cardDeck.set(i,a);
 	    }
+	}
+	
+	public void putCardBack(Card card)
+	{
+		this.cardDeck.add(card);
 	}
 
 
